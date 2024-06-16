@@ -96,20 +96,119 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Source\css\bootstrap-grid.css" />
+    <Content Include="Source\css\bootstrap-grid.min.css" />
+    <Content Include="Source\css\bootstrap-grid.rtl.css" />
+    <Content Include="Source\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="Source\css\bootstrap-reboot.css" />
+    <Content Include="Source\css\bootstrap-reboot.min.css" />
+    <Content Include="Source\css\bootstrap-reboot.rtl.css" />
+    <Content Include="Source\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Source\css\bootstrap-utilities.css" />
+    <Content Include="Source\css\bootstrap-utilities.min.css" />
+    <Content Include="Source\css\bootstrap-utilities.rtl.css" />
+    <Content Include="Source\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Source\css\bootstrap.css" />
+    <Content Include="Source\css\bootstrap.min.css" />
+    <Content Include="Source\css\bootstrap.rtl.css" />
+    <Content Include="Source\css\bootstrap.rtl.min.css" />
+    <Content Include="Source\css\styles.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.bootstrap.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.bootstrap.min.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.bootstrap4.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.bootstrap5.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.bootstrap5.min.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.bulma.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.bulma.min.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.dataTables.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.dataTables.min.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.foundation.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.foundation.min.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.jqueryui.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.jqueryui.min.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.semanticui.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\css\dataTables.semanticui.min.css" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.bootstrap.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.bootstrap.min.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.bootstrap4.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.bootstrap5.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.bootstrap5.min.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.bulma.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.bulma.min.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.dataTables.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.dataTables.min.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.foundation.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.foundation.min.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.jqueryui.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.jqueryui.min.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.min.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.semanticui.js" />
+    <Content Include="Source\Datatables\DataTables-2.0.0\js\dataTables.semanticui.min.js" />
+    <Content Include="Source\Datatables\datatables.css" />
+    <Content Include="Source\Datatables\datatables.js" />
+    <Content Include="Source\Datatables\datatables.min.css" />
+    <Content Include="Source\Datatables\datatables.min.js" />
+    <Content Include="Source\js\bootstrap.bundle.js" />
+    <Content Include="Source\js\bootstrap.bundle.min.js" />
+    <Content Include="Source\js\bootstrap.esm.js" />
+    <Content Include="Source\js\bootstrap.esm.min.js" />
+    <Content Include="Source\js\bootstrap.js" />
+    <Content Include="Source\js\bootstrap.min.js" />
+    <Content Include="Source\js\jquery-3.7.1.min.js" />
+    <Content Include="Source\js\script.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\categoria.cs" />
+    <Compile Include="Models\citas.cs" />
+    <Compile Include="Models\clientes.cs" />
+    <Compile Include="Models\guias_programadas.cs" />
+    <Compile Include="Models\inmuebles.cs" />
+    <Compile Include="Models\locales.cs" />
     <Compile Include="Models\Model_Sistema.cs" />
+    <Compile Include="Models\propietarios.cs" />
+    <Compile Include="Models\roles.cs" />
+    <Compile Include="Models\usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
+    <Content Include="Source\css\bootstrap-grid.css.map" />
+    <Content Include="Source\css\bootstrap-grid.min.css.map" />
+    <Content Include="Source\css\bootstrap-grid.rtl.css.map" />
+    <Content Include="Source\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Source\css\bootstrap-reboot.css.map" />
+    <Content Include="Source\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Source\css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Source\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Source\css\bootstrap-utilities.css.map" />
+    <Content Include="Source\css\bootstrap-utilities.min.css.map" />
+    <Content Include="Source\css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Source\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Source\css\bootstrap.css.map" />
+    <Content Include="Source\css\bootstrap.min.css.map" />
+    <Content Include="Source\css\bootstrap.rtl.css.map" />
+    <Content Include="Source\css\bootstrap.rtl.min.css.map" />
+    <Content Include="Source\js\bootstrap.bundle.js.map" />
+    <Content Include="Source\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Source\js\bootstrap.esm.js.map" />
+    <Content Include="Source\js\bootstrap.esm.min.js.map" />
+    <Content Include="Source\js\bootstrap.js.map" />
+    <Content Include="Source\js\bootstrap.min.js.map" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -119,7 +218,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
