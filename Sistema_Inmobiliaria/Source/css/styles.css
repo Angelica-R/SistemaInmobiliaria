@@ -1,0 +1,84 @@
+/* Estilos para el dashboard */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex; /* Usamos Flexbox para organizar los elementos en columnas */
+    height: 100vh; /* Establecemos la altura del body al 100% de la altura de la ventana (viewport) */
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    transition: all 0.3s ease; /* Agregamos una transición suave */
+}
+
+.sidebar-hidden {
+    width: 0; /* Ocultamos la barra lateral estableciendo su anchura a 0 */
+    padding: 0;
+    overflow: hidden;
+}
+
+.sidebar h1 {
+    margin: 0;
+    padding: 10px;
+    font-size: 24px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid #666;
+}
+
+.sidebar li:last-child {
+    border-bottom: none;
+}
+
+.main-content {
+    flex: 1; /* La sección principal tomará todo el espacio restante en la pantalla */
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+
+.main-content h2 {
+    margin-top: 0;
+}
+
+/* Estilo para el botón de ocultar/desplegar */
+.toggle-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+a {
+    color: white; /* Cambia "red" al color deseado */
+    text-decoration: none; /* Eliminar la subrayado */
+}
+.separador {
+    margin-top: 10px; /* Ajusta el valor según la separación deseada */
+    border-top: 1px solid #ccc; /* Establece el estilo de la línea separadora */
+}
+
+
+
+
+
+
+
+   
+
+
