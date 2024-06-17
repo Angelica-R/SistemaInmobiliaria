@@ -1,0 +1,57 @@
+﻿@model List<Sistema_Inmobiliaria.Models.usuarios>
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .icon-white {
+        color: white !important;
+    }
+</style>
+
+<br />
+<center><h1>Gestionar Usuarios</h1></center>
+<h2 class="card-header"><a href="~/Usuario/AgregarEditar/" class="btn btn-secondary">Nuevo Usuario</a> <br /><br /></h2>
+
+<br />
+
+<table id="DatatableP" class="table">
+    <thead>
+        <tr>
+            <th style="width:30px">Id</th>
+            <th style="width:80px">DNI</th>
+            <th style="width:150px">Nombre</th>
+            <th style="width:30px">Email</th>
+            <th style="width:100px">Direccion</th>
+            <th style="width:100px">Telefono</th>
+            <th style="width:50px">Rol</th>
+            <th style="width:250px">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@(m.codusuario)</td>
+                <td>@(m.dni)</td>
+                <td>@(m.nombre + " " + m.apellido)</td>
+                <td>@(m.email)</td>
+                <td>@(m.direccion)</td>
+                <td>@(m.telefono)</td>
+                <td>@(m.roles.descripcion)</td>
+                <td>
+                    <a href="~/Usuario/Visualizar/@m.codusuario" class="btn btn-sm btn-primary">
+                        <i class="fa-solid fa-eye icon-white"></i>
+                    </a>
+                    <a href="~/Usuario/AgregarEditar/@m.codusuario" class="btn btn-sm btn-warning">
+                        <i class="fa-solid fa-pen-to-square icon-white"></i>
+                    </a>
+                    <a onclick="return confirm('¿Esta seguro de eliminar el registro?');" href="~/Usuario/Eliminar/@m.codusuario" class="btn btn-sm btn-danger">
+                        <i class="fa-solid fa-trash icon-white"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

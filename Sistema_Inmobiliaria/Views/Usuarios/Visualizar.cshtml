@@ -1,0 +1,110 @@
+﻿@model Sistema_Inmobiliaria.Models.usuarios
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+<style>
+    .text-white {
+        color: white !important;
+    }
+
+    .border-primary {
+        border-color: #28A745 !important;
+    }
+
+    .input-group-text-primary {
+        background-color: #28a745 !important;
+        color: white !important;
+    }
+</style>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Usuario/Index">Usuarios</a></li>
+        <li class="breadcrumb-item active"> @Model.nombre</li>
+    </ol>
+</nav>
+
+<div class="card shadow-sm border-primary">
+    <div class="card-header bg-primary-text-white">
+        <h5 class="mb-0"><i class="fas fa-info-circle"></i> Información del Usuario</h5>
+    </div>
+    <div class="card-body">
+        <!-- ID Row -->
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <div class="input-group border-primary">
+                    <span class="input-group-text input-group-text-primary"><i class="fas fa-id-badge"></i> ID:</span>
+                    <span class="form-control">@Model.codusuario</span>
+                </div>
+            </div>
+        </div>
+        <!-- Nombres and Apellidos Row -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <div class="input-group border-primary">
+                    <span class="input-group-text input-group-text-primary"><i class="fas fa-user"></i> Nombres:</span>
+                    <span class="form-control">@Model.nombre</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group border-primary">
+                    <span class="input-group-text input-group-text-primary"><i class="fas fa-user"></i> Apellidos:</span>
+                    <span class="form-control">@Model.apellido</span>
+                </div>
+            </div>
+        </div>
+        <!-- Teléfono and Dirección Row -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <div class="input-group border-primary">
+                    <span class="input-group-text input-group-text-primary"><i class="fas fa-phone"></i> Teléfono:</span>
+                    <span class="form-control">@Model.telefono</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group border-primary">
+                    <span class="input-group-text input-group-text-primary"><i class="fas fa-map-marker-alt"></i> Dirección:</span>
+                    <span class="form-control">@Model.direccion</span>
+                </div>
+            </div>
+        </div>
+        <!-- Email and Contraseña Row -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <div class="input-group border-primary">
+                    <span class="input-group-text input-group-text-primary"><i class="fas fa-envelope"></i> Email:</span>
+                    <span class="form-control">@Model.email</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group border-primary">
+                    <span class="input-group-text input-group-text-primary"><i class="fas fa-key"></i> Contraseña:</span>
+                    <input type="password" id="password" class="form-control" value="@Model.clave" readonly />
+                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Rol Row -->
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <div class="input-group border-primary">
+                    <span class="input-group-text input-group-text-primary text-muted"><i class="fas fa-user-tag"></i> Rol:</span>
+                    <span class="form-control">@Model.roles.descripcion</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('togglePassword').addEventListener('click', function () {
+        var passwordField = document.getElementById('password');
+        var passwordFieldType = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordField.setAttribute('type', passwordFieldType);
+        this.querySelector('i').classList.toggle('fa-eye');
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+</script>
