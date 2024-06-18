@@ -1,0 +1,70 @@
+﻿@{
+    Layout = null; // Esto evita que se aplique el layout predeterminado
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>THIAGO-Inversiones e Inmobiliaria</title>
+    <link href="~/Content/css/catalogo.css" rel="stylesheet" />
+    <link href="~/Content/css/index-estilo.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link rel="icon" type="image/png" href="~/Content/img/logo.png">
+</head>
+
+<body>
+    @Html.Partial("Encabezado") <!-- Incluir encabezado -->
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="row justify-content-center text-center">
+        <div class="header">
+            <h3>Descubre nuestros inmuebles</h3>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <div class="cards-list">
+        <div class="card 1">
+            <div class="card_image">
+                <img src="~/Content/img/casa2.jpg" />
+                <a href="@Url.Action("Casas", "Inmuebles")" class="button" target="_blank">Ver Catálogo</a>
+            </div>
+            <div class="card_title title-white">
+                <p>CASAS EN VENTA</p>
+            </div>
+        </div>
+
+        <div class="card 2">
+            <div class="card_image">
+                <img src="~/Content/img/departamento1.jpg" />
+                <div class="card-button"><a href="@Url.Action("Departamentos", "Inmuebles")" class="button" target="_blank">Ver Catálogo</a></div>
+            </div>
+            <div class="card_title title-white">
+                <p>DEPARTAMENTOS EN VENTA</p>
+            </div>
+        </div>
+
+        <div class="card 3">
+            <div class="card_image">
+                <img src="~/Content/img/terreno1.jpg" />
+                <a href="@Url.Action("Terrenos", "Inmuebles")" class="button" target="_blank">Ver Catálogo</a>
+            </div>
+            <div class="card_title">
+                <p>TERRENOS EN VENTA</p>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("PiePagina") <!-- Incluir pie de página -->
+
+</body>
+</html>

@@ -2321,6 +2321,7 @@
     <Compile Include="Controllers\AsesoresController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InmueblesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2557,6 +2558,8 @@
     <Content Include="Views\Shared\PiePagina.cshtml" />
     <Content Include="Views\Shared\Slider.cshtml" />
     <Content Include="Views\Asesores\Asesores.cshtml" />
+    <Content Include="Views\Inmuebles\Casas.cshtml" />
+    <Content Include="Views\Home\Catalogo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
