@@ -32,5 +32,20 @@ namespace Sistema_Inmobiliaria.Controllers
                 return View("ConSesion", model);
             }
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AgregarCita(citas cita)
+        {
+            if (ModelState.IsValid)
+            {
+                db.citas.Add(cita);
+                db.SaveChanges();
+                TempData["MensajeCita"] = "¡Cita reservada exitosamente!";
+                return RedirectToAction("Contactanos");
+            }
+
+            ViewBag.Locales = new SelectList(db.locales, "codlocal", "localNombre", cita.codlocal);
+            return View("ConSesion", cita);
+        }
     }
 }

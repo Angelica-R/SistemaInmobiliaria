@@ -2569,6 +2569,7 @@
     <Content Include="Views\Cliente\Login.cshtml" />
     <Content Include="Views\Cliente\Registrar.cshtml" />
     <Content Include="Views\Contactanos\SinSesion.cshtml" />
+    <Content Include="Views\Contactanos\ConSesion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
