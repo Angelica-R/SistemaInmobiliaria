@@ -2488,12 +2488,9 @@
     <Content Include="Source\assets\scss\bootstrap\scss\_variables.scss" />
     <Content Include="Source\assets\scss\config.codekit3" />
     <Content Include="Source\assets\scss\portal.scss" />
-<<<<<<< Updated upstream
-=======
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Usuarios\Visualizar.cshtml" />
     <Content Include="Views\Usuarios\AgregarEditar.cshtml" />
->>>>>>> Stashed changes
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

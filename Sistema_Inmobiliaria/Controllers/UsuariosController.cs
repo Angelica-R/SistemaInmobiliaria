@@ -43,7 +43,7 @@ namespace Sistema_Inmobiliaria.Controllers
         public ActionResult AgregarEditar(int id = 0)
         {
             /*ViewBag.Usuarios = objUsuarios.Listar();*///Llenar combo 
-            ViewBag.roles = objRoles.Listar();
+            //ViewBag.roles = objRoles.Listar();
             return View(id == 0 ? new usuarios() //Agregar un nuevo objeto
                         : objUsuarios.Obtener(id)); //Modificar un objeto existente
         }
@@ -63,7 +63,7 @@ namespace Sistema_Inmobiliaria.Controllers
                 }
 
             }
-            ViewBag.Roles = objRoles.Listar(); // Llenar combo con roles
+           /* ViewBag.Roles = objRoles.Listar();*/ // Llenar combo con roles
             return View("AgregarEditar", model);
             //else
             //{
