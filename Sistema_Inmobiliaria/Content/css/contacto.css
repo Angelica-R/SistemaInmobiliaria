@@ -1,0 +1,90 @@
+
+.formulario{
+    width: 60%;
+    margin: 50px auto;
+    z-index: 1000;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+  }
+
+.formulario h2{
+    text-align: center;
+    color: firebrick;
+}
+
+    .formulario input{
+      width: 100%;
+      margin-bottom: 30px;
+      padding: 10px;
+      font-family: Verdana;
+      border: none;
+      border-bottom: 1px solid firebrick;
+      transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, rgb(170, 7, 7) 4%);
+      background-position: -900px 0;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+      .formulario input:focus{
+        outline: none;
+        background-position: 0 0;
+      }
+      input::-webkit-input-placeholder{
+        -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+      }
+      .formulario input:focus::-webkit-input-placeholder{
+        color: #ff8000;
+        -webkit-transform:translate(-5px,-25px);
+        transform:translate(-5px,-25px);
+        visibility: visible !important;
+      }
+      .formulario .boton{
+        width: 100.2%;
+        font-size: 1.3em;
+        font-weight: bold;
+        background-color: firebrick;
+        color: #fff;
+        border: 0;
+        border-bottom: 2px solid firebrick;
+      }
+      .formulario .boton:hover{
+        background-color: rgb(134, 26, 26);
+      }
+    .formulario textarea{
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      font-family: Verdana;
+      border: none;
+      border-bottom: 1px solid firebrick;
+      transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, firebrick 4%);
+      background-position: -950px 0;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+      .formulario textarea:focus{
+        outline: none;
+        background-position: 0 0;
+      }
+      textarea::-webkit-textarea-placeholder{
+        -webkit-transition: all 0.3s ease-in-out;
+              transition: all 0.3s ease-in-out;
+      }
+      .formulario textarea:focus::-webkit-textarea-placeholder{
+        color: firebrick;
+        -webkit-transform:translate(-5px,-25px);
+        transform:translate(-5px,-25px);
+        visibility: visible !important;
+      }
+    .formulario h1{
+      font-size: 2.5em;
+      padding: 20px;
+      position: relative;
+      top: -50px;
+      background-color: #fff;
+      border-top: 3px solid firebrick;
+    }
+  

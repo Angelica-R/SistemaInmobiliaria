@@ -1,0 +1,77 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>THIAGO - Inversiones e Inmobiliaria</title>
+    <link rel="stylesheet" href="~/Content/css/nosotros.css">
+    <link rel="icon" type="image/png" href="~/Content/img/logo.png">
+</head>
+<body>
+    @Html.Partial("Encabezado") <!-- Incluir encabezado -->
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <section class="about-section">
+        <div class="container-about">
+            <div class="sec-title">
+                <p class="title-about">Acerca de la empresa</p>
+                <h2>Inversiones e Inmobiliaria <br>"Thiago"</h2>
+            </div>
+            <div class="text">
+                <span style="font-weight:bold">Misión: </span>La misión de Inversiones e Inmobiliaria Thiago es empoderar a nuestros usuarios para que tengan el mejor camino a su próxima casa, mediante herramientas tecnológicas y datos relevantes. En paralelo, buscamos ayudar a los vendedores a que sean más eficientes y brinden el mejor servicio posible a los potenciales compradores.<br /><br />
+                <span style="font-weight:bold">Visión: </span>Ser la plataforma de inmuebles más enfocada en el usuario, sin importar dónde se encuentre. Es una plataforma web que nació para cambiar la forma en que se venden y arriendan inmuebles en Tacna.
+                <br /><br />
+                Quienes busquen un nuevo hogar o quieran invertir en propiedades encontrarán en Thiago, además de las ofertas disponibles, valiosa información para tomar las mejores decisiones: promedios de precios, características de los barrios, comparaciones, etc.
+            </div>
+            <ul class="list-style-one">
+                <p>Podemos ofrecerte:</p>
+                <li>Casas</li>
+                <li>Departamentos</li>
+                <li>Terrenos</li>
+                <li>Locales Comerciales</li>
+            </ul>
+            <div class="btn-box">
+                <a href="@Url.Action("Contacto", "Home")" class="theme-btn btn-style-one">Contáctanos</a>
+            </div>
+        </div>
+
+        <div class="image-column">
+            <div class="inner-column">
+                <figure class="image-1"><a href="#" class="lightbox-image" data-fancybox="images"><img src="~/Content/img/casa7.jpg" alt=""></a></figure>
+                <figure class="image-2"><a href="#" class="lightbox-image" data-fancybox="images"><img src="~/Content/img/casa6.jpg" alt=""></a></figure>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="ubication-card">
+        <h1>Ubicación</h1>
+        <div class="ubication">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1896.7925540243186!2d-70.2506803!3d-18.0444483!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915acf090bcb85d9%3A0xadf205588d425086!2sInmobiliaria%20thiago!5e0!3m2!1ses!2spe!4v1667369853222!5m2!1ses!2spe" width="980" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+    @Html.Action("Asesores", "Asesores") <!-- Incluir asesores -->
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    @Html.Partial("PiePagina") <!-- Incluir pie de página -->
+
+</body>
+</html>
+
+
