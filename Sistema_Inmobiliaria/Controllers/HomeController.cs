@@ -25,7 +25,7 @@ namespace Sistema_Inmobiliaria.Controllers
         }
         public ActionResult Contacto()
         {
-            return PartialView("~/Views/Shared/_Contacto.cshtml");
+            return PartialView("~/Views/Shared/Contacto.cshtml");
         }
     }
 }
