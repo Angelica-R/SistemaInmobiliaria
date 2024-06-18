@@ -2,6 +2,7 @@ namespace Sistema_Inmobiliaria.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -17,20 +18,21 @@ namespace Sistema_Inmobiliaria.Models
         [Key]
         public int codcliente { get; set; }
 
-        [Required]
-        [StringLength(8)]
+        [Required(ErrorMessage = "El campo DNI es obligatorio.")]
+        [StringLength(8, MinimumLength = 8, ErrorMessage = "El DNI debe tener 8 caracteres.")]
         public string cliDni { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required(ErrorMessage = "El campo Nombres es obligatorio.")]
+        [DisplayName("Nombres")]
         public string cliNombre { get; set; }
 
         [Required]
         [StringLength(50)]
+        [DisplayName("Apellidos")]
         public string cliApellido { get; set; }
 
         [Required]
-        [StringLength(15)]
+        [StringLength(12)]
         public string cliTelefono { get; set; }
 
         [Required]
