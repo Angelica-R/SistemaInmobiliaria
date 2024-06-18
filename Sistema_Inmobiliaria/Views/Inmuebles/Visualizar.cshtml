@@ -1,1 +1,21 @@
-﻿
+﻿@model Sistema_Inmobiliaria.Models.inmuebles
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Visualizar Inmueble</title>
+    <link rel="stylesheet" href="~/Content/css/visualizar.css">
+    <link rel="icon" type="image/png" href="~/Content/img/logo.png">
+</head>
+<body>
+    @Html.Partial("Encabezado")
+
+    <div class="contenedor-ver" align="center">
+        <iframe width='100%' height='969' src='@Model.ruta' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div>
+
+    @Html.Partial("PiePagina")
+</body>
+</html>
+

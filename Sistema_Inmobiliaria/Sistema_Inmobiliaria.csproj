@@ -2319,6 +2319,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AsesoresController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InmueblesController.cs" />
@@ -2564,6 +2565,7 @@
     <Content Include="Views\Inmuebles\Terrenos.cshtml" />
     <Content Include="Views\Inmuebles\Detalles.cshtml" />
     <Content Include="Views\Inmuebles\Visualizar.cshtml" />
+    <Content Include="Views\Cliente\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
