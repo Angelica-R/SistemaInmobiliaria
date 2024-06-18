@@ -63,5 +63,10 @@ namespace Sistema_Inmobiliaria.Controllers
 
             return View(model);
         }
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Contactanos", "Contactanos");
+        }
     }
 }
