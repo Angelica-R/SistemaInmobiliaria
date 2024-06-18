@@ -2550,6 +2550,8 @@
     <Content Include="Views\Usuarios\Visualizar.cshtml" />
     <Content Include="Views\Usuarios\AgregarEditar.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Nosotros.cshtml" />
+    <Content Include="Views\Shared\Contacto.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

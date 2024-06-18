@@ -17,11 +17,11 @@ namespace Sistema_Inmobiliaria.Controllers
         }
         public ActionResult Nosotros()
         {
-            return View("_Nosotros");
+            return View("Nosotros");
         }
         public ActionResult Catalogo()
         {
-            return View("_Catalogo");
+            return View("Catalogo");
         }
         public ActionResult Contacto()
         {
