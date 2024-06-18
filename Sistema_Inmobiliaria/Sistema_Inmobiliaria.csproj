@@ -2561,6 +2561,7 @@
     <Content Include="Views\Inmuebles\Casas.cshtml" />
     <Content Include="Views\Home\Catalogo.cshtml" />
     <Content Include="Views\Inmuebles\Departamentos.cshtml" />
+    <Content Include="Views\Inmuebles\Terrenos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -21,5 +21,10 @@ namespace Sistema_Inmobiliaria.Controllers
             var departamentos = db.inmuebles.Where(i => i.categoria.descripcion == "Departamento").ToList();
             return View(departamentos);
         }
+        public ActionResult Terrenos()
+        {
+            var terrenos = db.inmuebles.Where(i => i.categoria.descripcion == "Terreno").ToList();
+            return View(terrenos);
+        }
     }
 }
