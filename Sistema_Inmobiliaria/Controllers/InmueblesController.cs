@@ -26,5 +26,53 @@ namespace Sistema_Inmobiliaria.Controllers
             var terrenos = db.inmuebles.Where(i => i.categoria.descripcion == "Terreno").ToList();
             return View(terrenos);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ReservarGuias(string nombre, string telefono, string correo, string mensaje, int idinmueble)
+        {
+            if (ModelState.IsValid)
+            {
+                var nuevaGuia = new guias_programadas
+                {
+                    nombre = nombre,
+                    telefono = telefono,
+                    correo = correo,
+                    mensaje = mensaje,
+                    inmueble = idinmueble
+                };
+
+                db.guias_programadas.Add(nuevaGuia);
+                db.SaveChanges();
+
+                TempData["MensajeCita"] = "¡Cita reservada exitosamente!";
+                return RedirectToAction("Detalles", new { id = idinmueble });
+            }
+
+            var inmueble = db.inmuebles.Find(idinmueble);
+            if (inmueble == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Detalles", inmueble);
+        }
+        public ActionResult Detalles(int id)
+        {
+            var inmueble = db.inmuebles.Find(id);
+            if (inmueble == null)
+            {
+                return HttpNotFound();
+            }
+            return View(inmueble);
+        }
+
+        public ActionResult Visualizar(int id)
+        {
+            var inmueble = db.inmuebles.Find(id);
+            if (inmueble == null)
+            {
+                return HttpNotFound();
+            }
+            return View(inmueble);
+        }
     }
 }
