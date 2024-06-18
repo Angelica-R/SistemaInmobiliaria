@@ -1,0 +1,76 @@
+﻿@model Sistema_Inmobiliaria.Models.inmuebles
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Detalles del Inmueble</title>
+    <link rel="stylesheet" href="~/Content/css/estilo_detalles.css">
+    <link rel="stylesheet" href="~/Content/css/catalogo.css">
+    <link rel="icon" type="image/png" href="~/Content/img/logo.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/3a40882597.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    @Html.Partial("Encabezado")
+
+    <div class="contenido">
+        <div class="product-img">
+            <img class="imagen_forma" src="~/Content/img/@Model.imagen" alt="">
+        </div>
+        <br>
+        <br>
+        <div class="product-info">
+            <div class="product-text">
+                <h1>@Model.titulo</h1>
+                <br>
+                <br>
+                <p>@Model.descripcion</p><br>
+                <br>
+                <div class="total-text">
+                    <h2>@Model.precio</h2>
+                    <br>
+                    <h3><a class="boton" href='@Url.Action("Visualizar", "Inmuebles", new { id = Model.idinmueble })'>Visualizar</a></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="~/Content/css/contacto.css">
+    <section>
+        <div class="formulario">
+            <h2>RESERVAR CITA</h2>
+            @using (Html.BeginForm("ReservarGuias", "Inmuebles", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.idinmueble)
+                <div class="form-group">
+                    @Html.Label("Nombre")
+                    <input type="text" name="nombre" class="form-control" placeholder="Nombre" required="required" />
+                </div>
+                <div class="form-group">
+                    @Html.Label("Teléfono")
+                    <input type="text" name="telefono" class="form-control" placeholder="Teléfono" required="required" />
+                </div>
+                <div class="form-group">
+                    @Html.Label("Correo")
+                    <input type="email" name="correo" class="form-control" placeholder="Correo" required="required" />
+                </div>
+                <div class="form-group">
+                    @Html.Label("Mensaje")
+                    <textarea name="mensaje" class="form-control" placeholder="Mensaje" required="required"></textarea>
+                </div>
+                <input type="submit" value="Enviar" class="btn btn-primary" />
+            }
+        </div>
+    </section>
+
+    @Html.Partial("PiePagina")
+</body>
+</html>
+
