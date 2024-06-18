@@ -34,5 +34,34 @@ namespace Sistema_Inmobiliaria.Controllers
                 }
             }
         }
+        public ActionResult Registrar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Registrar(clientes model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var db = new Model_Sistema())
+                {
+                    if (db.clientes.Any(c => c.cliEmail == model.cliEmail))
+                    {
+                        ModelState.AddModelError("cliEmail", "Ya existe un usuario registrado con este correo electrónico.");
+                        return View(model);
+                    }
+
+                    db.clientes.Add(model);
+                    db.SaveChanges();
+                }
+
+                TempData["MensajeRegistro"] = "¡Registro exitoso! Ahora puedes iniciar sesión.";
+                return RedirectToAction("Login");
+            }
+
+            return View(model);
+        }
     }
 }

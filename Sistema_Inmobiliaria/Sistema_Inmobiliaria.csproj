@@ -2566,6 +2566,7 @@
     <Content Include="Views\Inmuebles\Detalles.cshtml" />
     <Content Include="Views\Inmuebles\Visualizar.cshtml" />
     <Content Include="Views\Cliente\Login.cshtml" />
+    <Content Include="Views\Cliente\Registrar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
