@@ -11,13 +11,17 @@ namespace Sistema_Inmobiliaria.Models
         [Key]
         public int codcita { get; set; }
 
+       
         public int codcliente { get; set; }
 
+        
         public int codlocal { get; set; }
 
+        
         [Column(TypeName = "date")]
         public DateTime fecha { get; set; }
 
+        
         public TimeSpan hora { get; set; }
 
         public virtual clientes clientes { get; set; }
@@ -25,3 +29,4 @@ namespace Sistema_Inmobiliaria.Models
         public virtual locales locales { get; set; }
     }
 }
+

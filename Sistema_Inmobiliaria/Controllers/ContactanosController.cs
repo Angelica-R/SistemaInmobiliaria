@@ -28,7 +28,7 @@ namespace Sistema_Inmobiliaria.Controllers
                     clientes = cliente
                 };
 
-                ViewBag.Locales = new SelectList(db.locales, "codlocal", "localNombre");
+                ViewBag.Locales = new SelectList(db.locales, "codlocal", "localDireccion");
                 return View("ConSesion", model);
             }
         }
@@ -38,14 +38,25 @@ namespace Sistema_Inmobiliaria.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.citas.Add(cita);
-                db.SaveChanges();
-                TempData["MensajeCita"] = "¡Cita reservada exitosamente!";
+                try
+                {
+                    db.citas.Add(cita);
+                    db.SaveChanges();
+                    TempData["MensajeCita"] = "¡Cita reservada exitosamente!";
+                }
+                catch (Exception ex)
+                {
+                    TempData["MensajeCita"] = "Error al reservar la cita: " + ex.Message + " " + ex.InnerException?.Message;
+                    System.Diagnostics.Debug.WriteLine("Error al reservar la cita: " + ex.Message + " " + ex.InnerException?.Message);
+                }
                 return RedirectToAction("Contactanos");
             }
-
-            ViewBag.Locales = new SelectList(db.locales, "codlocal", "localNombre", cita.codlocal);
-            return View("ConSesion", cita);
+            else
+            {
+                TempData["MensajeCita"] = "El modelo no es válido.";
+                ViewBag.Locales = new SelectList(db.locales, "codlocal", "localDireccion", cita.codlocal);
+                return View("ConSesion", cita);
+            }
         }
     }
 }

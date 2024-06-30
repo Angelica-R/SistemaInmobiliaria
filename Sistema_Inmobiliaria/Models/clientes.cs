@@ -26,21 +26,24 @@ namespace Sistema_Inmobiliaria.Models
         [DisplayName("Nombres")]
         public string cliNombre { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El campo Apellidos es obligatorio.")]
         [StringLength(50)]
         [DisplayName("Apellidos")]
         public string cliApellido { get; set; }
 
         [Required]
-        [StringLength(12)]
+        [StringLength(15)]
+        [DisplayName("Telefono")]
         public string cliTelefono { get; set; }
 
         [Required]
         [StringLength(50)]
+        [DisplayName("Email")]
         public string cliEmail { get; set; }
 
         [Required]
         [StringLength(10)]
+        [DisplayName("Clave")]
         public string cliClave { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -11,12 +11,12 @@
     <title>THIAGO-Inversiones e Inmobiliaria</title>
     <link href="~/Content/css/registrar.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="~/Content/img/logo.png">
+    
 </head>
 <body>
-
-    <!-- Encabezado -->
     @Html.Partial("Encabezado")
 
+    <br /><br />
     <div class="login">
         <div class="login-triangle"></div>
         <h2 class="login-header">Regístrate</h2>
@@ -47,6 +47,7 @@
                 <p><input type="submit" value="Registrar" name="registrar"></p>
             </div>
         }
+        
         <a class="registrar" href="@Url.Action("Login", "Cliente")">¿Ya tienes una cuenta? Inicia sesión</a>
     </div>
 
