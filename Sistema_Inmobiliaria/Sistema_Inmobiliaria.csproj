@@ -13,9 +13,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sistema_Inmobiliaria</RootNamespace>
     <AssemblyName>Sistema_Inmobiliaria</AssemblyName>
+<<<<<<< Updated upstream
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
-
+=======
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+>>>>>>> Stashed changes
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -60,11 +62,13 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+<<<<<<< Updated upstream
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
-
+=======
+>>>>>>> Stashed changes
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
