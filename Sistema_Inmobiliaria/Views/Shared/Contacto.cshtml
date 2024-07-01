@@ -1,12 +1,14 @@
-﻿@{
-    Layout = null;
+﻿@model Sistema_Inmobiliaria.Models.Contacto
+
+@{
+    Layout = null; // Esto evita que se aplique el layout predeterminado
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Formulario de Contacto</title>
+    <title>Contacto</title>
     <link href="~/Content/css/contacto.css" rel="stylesheet" />
 </head>
 <body>
@@ -18,11 +20,11 @@
             @using (Html.BeginForm("EnviarCorreo", "Home", FormMethod.Post, new { @class = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <input type="text" placeholder="Nombre" name="nombre" id="nombre" required>
-                <input type="text" placeholder="Telefono" name="telefono" id="telefono" required>
-                <input type="email" placeholder="Correo" name="correo" id="correo" required>
-                <input type="text" placeholder="Asunto" name="asunto" id="asunto" required>
-                <textarea cols="30" rows="10" placeholder="Mensaje" name="mensaje" id="mensaje" required></textarea>
+                @Html.TextBoxFor(m => m.Nombre, new { placeholder = "Nombre", required = "required" })
+                @Html.TextBoxFor(m => m.Telefono, new { placeholder = "Telefono", required = "required" })
+                @Html.TextBoxFor(m => m.Correo, new { placeholder = "Correo", type = "email", required = "required" })
+                @Html.TextBoxFor(m => m.Asunto, new { placeholder = "Asunto", required = "required" })
+                @Html.TextAreaFor(m => m.Mensaje, new { placeholder = "Mensaje", required = "required" })
                 <input type="submit" id="enviar" value="Enviar" class="boton">
             }
         </div>
@@ -31,4 +33,3 @@
     @Html.Partial("PiePagina") <!-- Incluir pie de página -->
 </body>
 </html>
-
