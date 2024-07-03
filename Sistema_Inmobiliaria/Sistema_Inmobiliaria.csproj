@@ -2331,6 +2331,7 @@
     <Compile Include="Models\categoria.cs" />
     <Compile Include="Models\citas.cs" />
     <Compile Include="Models\clientes.cs" />
+    <Compile Include="Models\Contacto.cs" />
     <Compile Include="Models\guias_programadas.cs" />
     <Compile Include="Models\inmuebles.cs" />
     <Compile Include="Models\locales.cs" />

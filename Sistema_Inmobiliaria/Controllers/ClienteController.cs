@@ -17,21 +17,34 @@ namespace Sistema_Inmobiliaria.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string email, string password)
+        public ActionResult Login(string email, string password, string tipoUsuario)
         {
             using (var db = new Model_Sistema())
             {
-                var usuario = db.clientes.FirstOrDefault(u => u.cliEmail == email && u.cliClave == password);
-                if (usuario != null)
+                if (tipoUsuario == "cliente")
                 {
-                    Session["UsuarioID"] = usuario.codcliente;
-                    return RedirectToAction("Contactanos", "Contactanos");
+                    var cliente = db.clientes.FirstOrDefault(u => u.cliEmail == email && u.cliClave == password);
+                    if (cliente != null)
+                    {
+                        Session["UsuarioID"] = cliente.codcliente;
+                        Session["UsuarioTipo"] = "cliente";
+                        return RedirectToAction("Contactanos", "Contactanos");
+                    }
                 }
-                else
+                else if (tipoUsuario == "usuario")
                 {
-                    ViewBag.ErrorMessage = "Credenciales incorrectas. Inténtalo de nuevo.";
-                    return View();
+                    var usuario = db.usuarios.FirstOrDefault(u => u.email == email && u.clave == password);
+                    if (usuario != null)
+                    {
+                        Session["UsuarioID"] = usuario.codusuario;
+                        Session["UsuarioTipo"] = "usuario";
+                        // Cambia "OtraVista" y "OtroControlador" por los nombres correctos de la vista y el controlador que deseas usar para usuarios
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
+
+                ViewBag.ErrorMessage = "Credenciales incorrectas. Inténtalo de nuevo.";
+                return View();
             }
         }
         public ActionResult Registrar()
