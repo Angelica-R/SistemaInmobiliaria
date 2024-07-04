@@ -53,7 +53,7 @@ namespace Sistema_Inmobiliaria.Controllers
                 try
                 {
                     model.Guardar();
-                    return Redirect("/Inmuebles");
+                    return Redirect("~/Inmuebles");
                 }
                 catch (Exception ex)
                 {

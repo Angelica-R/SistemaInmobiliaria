@@ -6,14 +6,6 @@
 }
 
 <style>
-    .text-white {
-        color: white !important;
-    }
-
-    .border-primary {
-        border-color: #28A745 !important;
-    }
-
     .input-group-text-primary {
         background-color: #28a745 !important;
         color: white !important;
@@ -22,109 +14,205 @@
     .form-control-border-primary {
         border: 1px solid #28A745 !important;
     }
-    /*.card-header.bg-primary-text-white {
+
+    .card-header.bg-primary-text-white {
         background-color: #28a745 !important;
         color: white !important;
-    }*/
+    }
+
+    .breadcrumb-item.active {
+        color: #28a745 !important;
+    }
+
+    .message-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+    }
+
+        .message-popup label {
+            display: block;
+            text-align: center;
+        }
+
+    .popup-checkbox {
+        display: none;
+    }
+
+        .popup-checkbox:checked + .message-popup {
+            display: block;
+        }
+
+    .card-header.bg-primary-text-white {
+        background-color: #28a745 !important;
+        color: white !important;
+    }
 </style>
 
-<h2>Agregar / Editar</h2>
+@*<h2>Agregar / Editar</h2>*@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="~/Usuario/Index">Usuarios</a></li>
-        <li class="breadcrumb-item active">@(Model.codusuario > 0 ? Model.nombre : "Nuevo Registro")</li>
+        <li class="breadcrumb-item"><a href="~/Usuarios/Index">Usuarios</a></li>
+        <li class="breadcrumb-item active">
+            @(Model.codusuario > 0 ? Model.apellido + ", " + Model.nombre : "Nuevo Registro")
+        </li>
     </ol>
 </nav>
 
-@using (Html.BeginForm("Guardar", "Usuarios", FormMethod.Post))
-{
-    @Html.HiddenFor(x => x.codusuario)
-    <div class="card shadow-sm border-primary">
-        <div class="card-header bg-primary-text-white">
-            <h5 class="mb-0"><i class="fas fa-info-circle"></i> Información del Usuario</h5>
-        </div>
-        <div class="card-body">
-            <!-- ID Row -->
-            <div class="row mb-3">
-                <div class="col-md-12">
-                    <div class="input-group border-primary">
-                        <span class="input-group-text input-group-text-primary"><i class="fas fa-id-badge"></i> ID:</span>
-                        @Html.TextBoxFor(x => x.codusuario, new { @class = "form-control", @readonly = "readonly" })
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+
+            @using (Html.BeginForm("Guardar", "Usuarios", FormMethod.Post))
+            {
+                @Html.HiddenFor(x => x.codusuario)
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Información del Usuario
                     </div>
-                </div>
-            </div>
-            <!-- Nombres and Apellidos Row -->
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <div class="input-group border-primary">
-                        <span class="input-group-text input-group-text-primary"><i class="fas fa-user"></i> Nombres:</span>
-                        @Html.TextBoxFor(x => x.nombre, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.nombre, null, new { @class = "text-danger" })
+                    <div class="card-body">
+
+                        <div class="mb-3 ">
+                            <label for="codusuario" class="form-label">
+                                <i class="fas fa-id-badge"></i> Codigo
+                            </label>
+                            <div class="input-group">
+                                @Html.TextBoxFor(x => x.codusuario, new { @class = "form-control", @readonly = "readonly" })
+                                <span class="input-group-text">
+                                    <i class="fas fa-id-badge"></i>
+                                </span>
+                            </div>
+                            @Html.ValidationMessageFor(x => x.codusuario, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col">
+                                <label for="Nombre" class="form-label">
+                                    <i class="fas fa-user"></i> Nombre
+                                </label>
+                                <div class="input-group">
+                                    @Html.TextBoxFor(x => x.nombre, new { @class = "form-control" })
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(x => x.nombre, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="col">
+                                <label for="Apellido" class="form-label">
+                                    <i class="fas fa-user"></i> Apellido
+                                </label>
+                                <div class="input-group">
+                                    @Html.TextBoxFor(x => x.apellido, new { @class = "form-control" })
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(x => x.apellido, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-md-6">
+                                <label for="telefono" class="form-label">
+                                    <i class="fas fa-phone"></i> Teléfono:
+                                </label>
+                                <div class="input-group">
+                                    @Html.TextBoxFor(x => x.telefono, new { @class = "form-control" })
+                                    <span class="input-group-text">
+                                        <i class="fas fa-phone"></i>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(x => x.telefono, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6">
+                                <label for="direccion" class="form-label">
+                                    <i class="fas fa-map-marker-alt"></i> Dirección:
+                                </label>
+                                <div class="input-group">
+                                    @Html.TextBoxFor(x => x.direccion, new { @class = "form-control" })
+                                    <span class="input-group-text">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(x => x.direccion, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">
+                                    <i class="fas fa-envelope"></i> Email:
+                                </label>
+                                <div class="input-group">
+                                    @Html.TextBoxFor(x => x.email, new { @class = "form-control" })
+                                    <span class="input-group-text">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(x => x.email, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6">
+                                <label for="clave" class="form-label">
+                                    <i class="fas fa-key"></i>  Contraseña:
+                                </label>
+                                <div class="input-group">
+                                    @Html.TextBoxFor(x => x.clave, new { @class = "form-control" })
+                                    <span class="input-group-text">
+                                        <i class="fas fa-key"></i>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(x => x.clave, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="codrol" class="form-label">
+                                <i class="fas fa-user-cog"></i> Tipo de Usuario
+                            </label>
+                            <select name="codrol" class="form-select">
+                                <option @(Model.codrol.Equals("") ? "selected" : "") value="">--Seleccione--</option>
+                                @foreach (var rol in roles)
+                                {
+                                    <option @(Model.codrol.Equals(rol.codrol) ? "selected" : "") value="@rol.codrol">
+                                        @rol.descripcion
+                                    </option>
+                                }
+                            </select>
+                            @Html.ValidationMessageFor(x => x.codrol, null, new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="input-group border-primary">
-                        <span class="input-group-text input-group-text-primary"><i class="fas fa-user"></i> Apellidos:</span>
-                        @Html.TextBoxFor(x => x.apellido, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.apellido, null, new { @class = "text-danger" })
+
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+
+                        <a href="~/Usuarios" class="btn btn-danger">Cancelar</a>
                     </div>
+                    <br />
+
                 </div>
-            </div>
-            <!-- Teléfono and Dirección Row -->
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <div class="input-group border-primary">
-                        <span class="input-group-text input-group-text-primary"><i class="fas fa-phone"></i> Teléfono:</span>
-                        @Html.TextBoxFor(x => x.telefono, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.telefono, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="input-group border-primary">
-                        <span class="input-group-text input-group-text-primary"><i class="fas fa-map-marker-alt"></i> Dirección:</span>
-                        @Html.TextBoxFor(x => x.direccion, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.direccion, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <!-- Email and Contraseña Row -->
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <div class="input-group border-primary">
-                        <span class="input-group-text input-group-text-primary"><i class="fas fa-envelope"></i> Email:</span>
-                        @Html.TextBoxFor(x => x.email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.email, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="input-group border-primary">
-                        <span class="input-group-text input-group-text-primary"><i class="fas fa-key"></i> Contraseña:</span>
-                        @Html.TextBoxFor(x => x.clave, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.clave, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <!-- Rol Row -->
-            <div class="row mb-3">
-                <div class="col-md-12">
-                    <div class="input-group border-primary">
-                        <span class="input-group-text input-group-text-primary"><i class="fas fa-user-tag"></i> Rol:</span>
-                        <select name="codrol" class="form-control">
-                            @foreach (var rol in roles)
-                            {
-                                <option @(Model.codrol == rol.codrol ? "selected" : "") value="@rol.codrol">@rol.descripcion</option>
-                            }
-                        </select>
-                        @Html.ValidationMessageFor(x => x.codrol, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
+
+
+            }
+
         </div>
     </div>
-    <br />
-    <div class="text-end">
-        <button type="submit" class="btn btn-primary">Guardar</button>
-        <a href="~/Usuario" class="btn btn-danger">Cancelar</a>
+
+    <div class="popup-checkbox">
+        <input type="checkbox" id="popup-checkbox" />
+        <div class="message-popup">
+            <label for="popup-checkbox">Los datos fueron registrados</label>
+        </div>
     </div>
-    <br />
-}
+
+</div>

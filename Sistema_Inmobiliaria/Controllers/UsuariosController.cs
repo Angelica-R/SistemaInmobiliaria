@@ -15,39 +15,17 @@ namespace Sistema_Inmobiliaria.Controllers
         // GET: Usuarios
         private usuarios objUsuarios = new usuarios();
         private roles objRoles = new roles();
-        private DbContext DbContext;
+        //private DbContext DbContext;
 
-        public ActionResult Index(string nombre)
+        public ActionResult Index(string nombre = null, int id = 0)
         {
-            if (nombre == null || nombre == "")
-            {
-                return View(objUsuarios.Listar());
-            }
-            else
-            {
-                return View(objUsuarios.Buscar(nombre));
-            }
+            ViewBag.Roles = objRoles.Listar();
+            ViewBag.Usuarios = string.IsNullOrEmpty(nombre) ? objUsuarios.Listar() : objUsuarios.Buscar(nombre);
+            ViewBag.Usuario = id == 0 ? new usuarios() : objUsuarios.Obtener(id);
+            return View();
         }
 
-        public ActionResult Visualizar(int id)
-        {
-            return View(objUsuarios.Obtener(id));
-        }
-
-        public ActionResult Buscar(string nombre)
-        {
-            return View(nombre == null || nombre == String.Empty ? objUsuarios.Listar() : objUsuarios.Buscar(nombre));
-
-        }
-
-        public ActionResult AgregarEditar(int id = 0)
-        {
-            /*ViewBag.Usuarios = objUsuarios.Listar();*///Llenar combo 
-            ViewBag.roles = objRoles.Listar();
-            return View(id == 0 ? new usuarios() //Agregar un nuevo objeto
-                        : objUsuarios.Obtener(id)); //Modificar un objeto existente
-        }
-
+        [HttpPost]
         public ActionResult Guardar(usuarios model)
         {
             if (ModelState.IsValid)
@@ -55,28 +33,96 @@ namespace Sistema_Inmobiliaria.Controllers
                 try
                 {
                     model.Guardar();
-                    return Redirect("/Usuario");
+                    return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "Error al guardar el usuario: " + ex.Message);
+                    ModelState.AddModelError("", "Error al guardar el usuario: " + ex.Message + " " + ex.StackTrace);
                 }
-
             }
-            ViewBag.Roles = objRoles.Listar(); // Llenar combo con roles
-            return View("AgregarEditar", model);
-            //else
-            //{
-            //    return View("~/Views/Usuario/AgregarEditar.cshtml", model);
-            //}
-
+            ViewBag.Roles = objRoles.Listar();
+            ViewBag.Usuarios = objUsuarios.Listar();
+            ViewBag.Usuario = model;
+            return View("Index");
         }
 
         public ActionResult Eliminar(int id)
         {
             objUsuarios.codusuario = id;
             objUsuarios.Eliminar();
-            return Redirect("~/Usuario");
+            return RedirectToAction("Index");
         }
+
+
+
+        //public ActionResult Index(string nombre)
+        //{
+        //    if (string.IsNullOrEmpty(nombre))
+        //    {
+        //        return View(objUsuarios.Listar());
+        //    }
+        //    else
+        //    {
+        //        return View(objUsuarios.Buscar(nombre));
+        //    }
+        //}
+        //public ActionResult Visualizar(int id)
+        //{
+        //    return View(objUsuarios.Obtener(id));
+        //}
+
+        //public ActionResult Buscar(string nombre)
+        //{
+        //    return View(string.IsNullOrEmpty(nombre) ? objUsuarios.Listar() : objUsuarios.Buscar(nombre));
+        //}
+
+        //public ActionResult AgregarEditar(int id = 0)
+        //{
+        //    ViewBag.Roles = objRoles.Listar();
+        //    return View(id == 0 ? new usuarios() : objUsuarios.Obtener(id));
+        //}
+
+        //[HttpPost]
+        //public ActionResult Guardar(usuarios model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            model.Guardar(); // Asegúrate de que este método funcione correctamente
+        //            return RedirectToAction("Index");
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            ModelState.AddModelError("", "Error al guardar el usuario: " + ex.Message);
+        //        }
+        //    }
+        //    ViewBag.Roles = objRoles.Listar();
+        //    return View("AgregarEditar", model);
+        //}
+
+        //public ActionResult Eliminar(int id)
+        //{
+        //    objUsuarios.codusuario = id;
+        //    objUsuarios.Eliminar(); // Verifica que este método esté implementado correctamente
+        //    return RedirectToAction("Index");
+        //}
+
+
+        //public ActionResult Guardar(usuarios model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        model.Guardar();
+        //        return Redirect("~/Usuarios/Index");
+        //    }
+        //    else
+        //    {
+        //        return View("~/Views/Usuarios/AgregarEditar");
+
+        //    }
+        //}
+
+
     }
 }

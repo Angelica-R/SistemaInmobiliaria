@@ -13,11 +13,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sistema_Inmobiliaria</RootNamespace>
     <AssemblyName>Sistema_Inmobiliaria</AssemblyName>
-<<<<<<< Updated upstream
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
-=======
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
->>>>>>> Stashed changes
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -54,6 +51,10 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -62,13 +63,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-<<<<<<< Updated upstream
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
-=======
->>>>>>> Stashed changes
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -132,7 +130,6 @@
     <Content Include="Source\assets\images\users\user-9.jpg" />
     <Content Include="Source\assets\js\app.js" />
     <Content Include="Source\assets\js\charts-demo.js" />
-    <Content Include="Source\assets\js\index-charts.js" />
     <Content Include="Source\assets\plugins\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Source\assets\plugins\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="Source\assets\plugins\bootstrap\css\bootstrap-grid.rtl.css" />
@@ -2280,11 +2277,13 @@
     <Compile Include="Models\categoria.cs" />
     <Compile Include="Models\citas.cs" />
     <Compile Include="Models\clientes.cs" />
+    <Compile Include="Models\DniResponse.cs" />
     <Compile Include="Models\guias_programadas.cs" />
     <Compile Include="Models\inmuebles.cs" />
     <Compile Include="Models\locales.cs" />
     <Compile Include="Models\Model_Sistema.cs" />
     <Compile Include="Models\propietarios.cs" />
+    <Compile Include="Models\ReniecService.cs" />
     <Compile Include="Models\roles.cs" />
     <Compile Include="Models\usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
