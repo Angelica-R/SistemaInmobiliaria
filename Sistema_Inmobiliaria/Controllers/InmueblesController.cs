@@ -1,78 +1,99 @@
-﻿using Sistema_Inmobiliaria.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Sistema_Inmobiliaria.Models;
 
 namespace Sistema_Inmobiliaria.Controllers
 {
     public class InmueblesController : Controller
     {
+        private inmuebles objInmueble = new inmuebles();
+
         private Model_Sistema db = new Model_Sistema();
 
-        public ActionResult Casas()
+        // GET: Inmuebles
+        public async Task<ActionResult> Index(int? id)
         {
-            var casas = db.inmuebles.Where(i => i.categoria.descripcion == "Casa").ToList();
-            return View(casas);
+            ViewBag.Inmuebles = await db.inmuebles.Include(i => i.categoria).ToListAsync();
+            ViewBag.Categorias = await db.categoria.ToListAsync();
+            ViewBag.Inmueble = id == null ? new inmuebles() : await db.inmuebles.FindAsync(id);
+            return View();
         }
-        public ActionResult Departamentos()
-        {
-            var departamentos = db.inmuebles.Where(i => i.categoria.descripcion == "Departamento").ToList();
-            return View(departamentos);
-        }
-        public ActionResult Terrenos()
-        {
-            var terrenos = db.inmuebles.Where(i => i.categoria.descripcion == "Terreno").ToList();
-            return View(terrenos);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ReservarGuias(string nombre, string telefono, string correo, string mensaje, int idinmueble)
+
+        // POST: Inmuebles/Guardar
+        public async Task<ActionResult> Guardar([Bind(Include = "idinmueble,titulo,descripcion,precio,imagen,idcategoria,ruta")] inmuebles inmueble, HttpPostedFileBase Foto)
         {
             if (ModelState.IsValid)
             {
-                var nuevaGuia = new guias_programadas
+                if (Foto != null && Foto.ContentLength > 0)
                 {
-                    nombre = nombre,
-                    telefono = telefono,
-                    correo = correo,
-                    mensaje = mensaje,
-                    inmueble = idinmueble
-                };
+                    var fileName = Path.GetFileName(Foto.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Images/Inmuebles"), fileName);
+                    Foto.SaveAs(path);
+                    inmueble.imagen = "/Images/Inmuebles/" + fileName;
+                }
 
-                db.guias_programadas.Add(nuevaGuia);
-                db.SaveChanges();
+                if (inmueble.idinmueble == 0)
+                {
+                    db.inmuebles.Add(inmueble);
+                }
+                else
+                {
+                    var inmuebleExistente = await db.inmuebles.FindAsync(inmueble.idinmueble);
+                    if (inmuebleExistente != null)
+                    {
+                        // Actualizar los datos del inmueble existente
+                        inmuebleExistente.titulo = inmueble.titulo;
+                        inmuebleExistente.descripcion = inmueble.descripcion;
+                        inmuebleExistente.precio = inmueble.precio;
+                        inmuebleExistente.ruta = inmueble.ruta;
+                        inmuebleExistente.idcategoria = inmueble.idcategoria;
 
-                TempData["MensajeCita"] = "¡Cita reservada exitosamente!";
-                return RedirectToAction("Detalles", new { id = idinmueble });
+                        if (Foto != null && Foto.ContentLength > 0)
+                        {
+                            inmuebleExistente.imagen = inmueble.imagen;
+                        }
+                    }
+                }
+
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
             }
 
-            var inmueble = db.inmuebles.Find(idinmueble);
-            if (inmueble == null)
-            {
-                return HttpNotFound();
-            }
-            return View("Detalles", inmueble);
+            ViewBag.Inmuebles = await db.inmuebles.Include(i => i.categoria).ToListAsync();
+            ViewBag.Categorias = await db.categoria.ToListAsync();
+            ViewBag.Inmueble = inmueble;
+            return View("Index");
         }
-        public ActionResult Detalles(int id)
+
+
+
+        // POST: Inmuebles/Eliminar
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Eliminar(int id)
         {
-            var inmueble = db.inmuebles.Find(id);
-            if (inmueble == null)
+            var inmueble = await db.inmuebles.FindAsync(id);
+            if (inmueble != null)
             {
-                return HttpNotFound();
+                db.inmuebles.Remove(inmueble);
+                await db.SaveChangesAsync();
             }
-            return View(inmueble);
+            return RedirectToAction("Index");
         }
 
-        public ActionResult Visualizar(int id)
+        protected override void Dispose(bool disposing)
         {
-            var inmueble = db.inmuebles.Find(id);
-            if (inmueble == null)
+            if (disposing)
             {
-                return HttpNotFound();
+                db.Dispose();
             }
-            return View(inmueble);
+            base.Dispose(disposing);
         }
     }
 }

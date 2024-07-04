@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Roles";
+    var roles = ViewBag.Roles as List<Sistema_Inmobiliaria.Models.roles>;
+    var rol = ViewBag.Rol as Sistema_Inmobiliaria.Models.roles;
+}
+
+<style>
+    .icon-white {
+        color: white !important;
+    }
+
+    .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .card-header {
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container">
+    @using (Html.BeginForm("Guardar", "Roles", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => rol.codrol)
+
+        <fieldset>
+            <legend><h2 class="text-center">Gestionar Roles</h2></legend>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                @Html.TextBoxFor(m => rol.descripcion, new { @class = "form-control", placeholder = "Descripción del Rol", required = "required" })
+                @Html.ValidationMessageFor(m => rol.descripcion, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group text-center">
+                <input type="submit" value="Guardar" class="btn btn-primary" style="color:white;" />
+            </div>
+        </fieldset>
+    }
+
+    <h2 class="card-header">Listado de Roles</h2>
+
+    <table id="DatatableP" class="table">
+        <thead>
+            <tr>
+                <th style="width:30px">Id</th>
+                <th style="width:250px">Descripción</th>
+                <th style="width:150px">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in roles)
+            {
+                <tr>
+                    <td>@(r.codrol)</td>
+                    <td>@(r.descripcion)</td>
+                    <td>
+                        <a href="@Url.Action("Index", "Roles", new { id = r.codrol })" class="btn btn-sm btn-warning">
+                            <i class="fa-solid fa-pen-to-square icon-white"></i> 
+                        </a>
+                        @using (Html.BeginForm("Eliminar", "Roles", FormMethod.Post, new { @class = "d-inline" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("id", r.codrol)
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Está seguro de eliminar este rol?');">
+                                <i class="fa-solid fa-trash icon-white"></i> 
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

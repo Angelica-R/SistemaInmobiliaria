@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Locales";
+    var locales = ViewBag.Locales as List<Sistema_Inmobiliaria.Models.locales>;
+    var local = ViewBag.Local as Sistema_Inmobiliaria.Models.locales;
+}
+<style>
+    .icon-white {
+        color: white !important;
+    }
+
+    .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .card-header {
+        margin-top: 20px;
+    }
+</style>
+<div class="container">
+    @using (Html.BeginForm("Guardar", "Locales", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => local.codlocal)
+
+        <fieldset>
+            <legend><h2 class="text-center">Gestionar Locales</h2></legend>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-home"></i></span>
+                @Html.TextBoxFor(m => local.localNombre, new { @class = "form-control", placeholder = "Nombre del Local", required = "required" })
+                @Html.ValidationMessageFor(m => local.localNombre, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                @Html.TextBoxFor(m => local.localDireccion, new { @class = "form-control", placeholder = "Dirección", required = "required" })
+                @Html.ValidationMessageFor(m => local.localDireccion, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group text-center">
+                <input type="submit" value="Guardar" class="btn btn-primary" style="color:white;" />
+            </div>
+        </fieldset>
+    }
+
+
+
+    <table id="DatatableP" class="table">
+        <thead>
+            <tr>
+                <th style="width:30px">Id</th>
+                <th style="width:150px">Nombre</th>
+                <th style="width:250px">Dirección</th>
+                <th style="width:150px">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var l in locales)
+            {
+                <tr>
+                    <td>@(l.codlocal)</td>
+                    <td>@(l.localNombre)</td>
+                    <td>@(l.localDireccion)</td>
+                    <td>
+                        <a href="@Url.Action("Index", "Locales", new { id = l.codlocal })" class="btn btn-sm btn-warning">
+                            <i class="fa-solid fa-pen-to-square icon-white"></i>
+                        </a>
+                        @using (Html.BeginForm("Eliminar", "Locales", FormMethod.Post, new { @class = "d-inline" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("id", l.codlocal)
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                <i class="fa-solid fa-trash icon-white"></i>
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -13,7 +13,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sistema_Inmobiliaria</RootNamespace>
     <AssemblyName>Sistema_Inmobiliaria</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -23,7 +24,6 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,7 +51,10 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -60,14 +63,17 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -96,64 +102,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\asesores.css" />
-    <Content Include="Content\css\catalogo.css" />
-    <Content Include="Content\css\contacto.css" />
-    <Content Include="Content\css\detalle.css" />
-    <Content Include="Content\css\encabezado-estilo.css" />
-    <Content Include="Content\css\estilo_contacto.css" />
-    <Content Include="Content\css\estilo_detalles.css" />
-    <Content Include="Content\css\index-estilo.css" />
-    <Content Include="Content\css\login.css" />
-    <Content Include="Content\css\nosotros.css" />
-    <Content Include="Content\css\pie-pagina.css" />
-    <Content Include="Content\css\registrar.css" />
-    <Content Include="Content\css\slider-estilo.css" />
-    <Content Include="Content\img\310414643.jpg" />
-    <Content Include="Content\img\321032873.jpg" />
-    <Content Include="Content\img\321341298.jpg" />
-    <Content Include="Content\img\336144464.jpg" />
-    <Content Include="Content\img\asesor01.png" />
-    <Content Include="Content\img\asesor1.png" />
-    <Content Include="Content\img\asesor2.png" />
-    <Content Include="Content\img\asesor3.png" />
-    <Content Include="Content\img\asesor4.png" />
-    <Content Include="Content\img\asesor5.png" />
-    <Content Include="Content\img\asesor6.png" />
-    <Content Include="Content\img\asesor7.png" />
-    <Content Include="Content\img\asesor8.png" />
-    <Content Include="Content\img\asesor9.png" />
-    <Content Include="Content\img\Asesores\asesor01.png" />
-    <Content Include="Content\img\Asesores\asesor2.png" />
-    <Content Include="Content\img\Asesores\asesor3.png" />
-    <Content Include="Content\img\Asesores\asesor4.png" />
-    <Content Include="Content\img\Asesores\asesor5.png" />
-    <Content Include="Content\img\Asesores\asesor6.png" />
-    <Content Include="Content\img\casa de campo.jpg" />
-    <Content Include="Content\img\casa ecologica.jpg" />
-    <Content Include="Content\img\casa1.jpg" />
-    <Content Include="Content\img\casa10.jpg" />
-    <Content Include="Content\img\casa11.jpg" />
-    <Content Include="Content\img\casa12.jpg" />
-    <Content Include="Content\img\casa2.jpg" />
-    <Content Include="Content\img\casa3.jpg" />
-    <Content Include="Content\img\casa4.jpg" />
-    <Content Include="Content\img\casa5.jpg" />
-    <Content Include="Content\img\casa6.jpg" />
-    <Content Include="Content\img\casa7.jpg" />
-    <Content Include="Content\img\casa8.jpg" />
-    <Content Include="Content\img\casa9.jpg" />
-    <Content Include="Content\img\Casas de playa.jpg" />
-    <Content Include="Content\img\departamento1.jpg" />
-    <Content Include="Content\img\locales-comerciales1.jpg" />
-    <Content Include="Content\img\logo.png" />
-    <Content Include="Content\img\terreno1.jpg" />
-    <Content Include="Content\img\TerrenoSlider.jpg" />
-    <Content Include="Content\js\detalles.js" />
-    <Content Include="Content\js\login.js" />
-    <Content Include="Content\js\slider.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Usuarios\default-user.jpg" />
     <Content Include="Source\assets\css\portal.css" />
     <Content Include="Source\assets\images\app-logo.svg" />
     <Content Include="Source\assets\images\background\background-1.jpg" />
@@ -180,7 +131,6 @@
     <Content Include="Source\assets\images\users\user-9.jpg" />
     <Content Include="Source\assets\js\app.js" />
     <Content Include="Source\assets\js\charts-demo.js" />
-    <Content Include="Source\assets\js\index-charts.js" />
     <Content Include="Source\assets\plugins\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Source\assets\plugins\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="Source\assets\plugins\bootstrap\css\bootstrap-grid.rtl.css" />
@@ -2318,12 +2268,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AsesoresController.cs" />
-    <Compile Include="Controllers\ClienteController.cs" />
-    <Compile Include="Controllers\ContactanosController.cs" />
+    <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\CitasController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\GuiasProgramadasController.cs" />
     <Compile Include="Controllers\InmueblesController.cs" />
+    <Compile Include="Controllers\LocalesController.cs" />
+    <Compile Include="Controllers\PropietariosController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2331,19 +2283,19 @@
     <Compile Include="Models\categoria.cs" />
     <Compile Include="Models\citas.cs" />
     <Compile Include="Models\clientes.cs" />
-    <Compile Include="Models\Contacto.cs" />
+    <Compile Include="Models\DniResponse.cs" />
     <Compile Include="Models\guias_programadas.cs" />
     <Compile Include="Models\inmuebles.cs" />
     <Compile Include="Models\locales.cs" />
     <Compile Include="Models\Model_Sistema.cs" />
     <Compile Include="Models\propietarios.cs" />
+    <Compile Include="Models\ReniecService.cs" />
     <Compile Include="Models\roles.cs" />
     <Compile Include="Models\usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="Content\img\logo.ai" />
     <None Include="packages.config" />
     <Content Include="Source\css\bootstrap-grid.css.map" />
     <Content Include="Source\css\bootstrap-grid.min.css.map" />
@@ -2553,24 +2505,13 @@
     <Content Include="Source\assets\scss\portal.scss" />
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Usuarios\Visualizar.cshtml" />
-    <Content Include="Views\Usuarios\AgregarEditar.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Nosotros.cshtml" />
-    <Content Include="Views\Shared\Contacto.cshtml" />
-    <Content Include="Views\Shared\Encabezado.cshtml" />
-    <Content Include="Views\Shared\PiePagina.cshtml" />
-    <Content Include="Views\Shared\Slider.cshtml" />
-    <Content Include="Views\Asesores\Asesores.cshtml" />
-    <Content Include="Views\Inmuebles\Casas.cshtml" />
-    <Content Include="Views\Home\Catalogo.cshtml" />
-    <Content Include="Views\Inmuebles\Departamentos.cshtml" />
-    <Content Include="Views\Inmuebles\Terrenos.cshtml" />
-    <Content Include="Views\Inmuebles\Detalles.cshtml" />
-    <Content Include="Views\Inmuebles\Visualizar.cshtml" />
-    <Content Include="Views\Cliente\Login.cshtml" />
-    <Content Include="Views\Cliente\Registrar.cshtml" />
-    <Content Include="Views\Contactanos\SinSesion.cshtml" />
-    <Content Include="Views\Contactanos\ConSesion.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Categorias\Index.cshtml" />
+    <Content Include="Views\Inmuebles\Index.cshtml" />
+    <Content Include="Views\Locales\Index.cshtml" />
+    <Content Include="Views\Propietarios\Index.cshtml" />
+    <Content Include="Views\Citas\Index.cshtml" />
+    <Content Include="Views\GuiasProgramadas\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2580,6 +2521,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\Inmuebles\" />
+    <Folder Include="Views\Guias\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -4,8 +4,11 @@ namespace Sistema_Inmobiliaria.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity;
     using System.Data.Entity.Spatial;
+    using System.Linq;
 
+    [Table("inmuebles")]
     public partial class inmuebles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -29,7 +32,7 @@ namespace Sistema_Inmobiliaria.Models
         [StringLength(20)]
         public string precio { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(100)]
         public string imagen { get; set; }
 
@@ -43,5 +46,8 @@ namespace Sistema_Inmobiliaria.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<guias_programadas> guias_programadas { get; set; }
+
+
+
     }
 }

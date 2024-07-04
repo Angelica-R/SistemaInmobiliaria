@@ -1,0 +1,143 @@
+﻿@model IEnumerable<Sistema_Inmobiliaria.Models.propietarios>
+
+@{
+    ViewBag.Title = "Propietarios";
+    var propietarios = ViewBag.Propietarios as List<Sistema_Inmobiliaria.Models.propietarios>;
+    var propietario = ViewBag.Propietario as Sistema_Inmobiliaria.Models.propietarios;
+}
+
+<style>
+    .icon-white {
+        color: white !important;
+    }
+
+    .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .card-header {
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container">
+    @using (Html.BeginForm("Guardar", "Propietarios", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => propietario.codpropietario)
+
+        <fieldset>
+            <legend><h2 class="text-center">Gestionar Propietarios</h2></legend>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                @Html.TextBoxFor(m => propietario.propnombre, new { @class = "form-control", placeholder = "Nombre", required = "required" })
+                @Html.ValidationMessageFor(m => propietario.propnombre, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                @Html.TextBoxFor(m => propietario.propapellido, new { @class = "form-control", placeholder = "Apellido", required = "required" })
+                @Html.ValidationMessageFor(m => propietario.propapellido, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                @Html.TextBoxFor(m => propietario.propdni, new { @class = "form-control", placeholder = "DNI", required = "required", id = "dni" })
+                @Html.ValidationMessageFor(m => propietario.propdni, "", new { @class = "text-danger" })
+                <button type="button" id="btnConsultarDni" class="btn btn-primary">Consultar DNI</button>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                @Html.TextBoxFor(m => propietario.proptelefono, new { @class = "form-control", id = "telefonoInput", maxlength = 9, minlength = 9, pattern = "[0-9]{9}", title = "El teléfono debe tener exactamente 9 dígitos.", placeholder = "Teléfono" })
+                @Html.ValidationMessageFor(m => propietario.proptelefono, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                @Html.TextBoxFor(m => propietario.propemail, new { @class = "form-control", id = "emailInput", type = "email", placeholder = "Correo electrónico", required = "required" })
+                @Html.ValidationMessageFor(m => propietario.propemail, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group text-center">
+                <input type="submit" value="Guardar" class="btn btn-primary" style="color:white;" />
+            </div>
+        </fieldset>
+    }
+
+    <table id="DatatableP" class="table">
+        <thead>
+            <tr>
+                <th style="width:30px">Id</th>
+                <th style="width:150px">Nombre</th>
+                <th style="width:150px">Apellido</th>
+                <th style="width:100px">DNI</th>
+                <th style="width:150px">Teléfono</th>
+                <th style="width:150px">Email</th>
+                <th style="width:150px">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in propietarios)
+            {
+                <tr>
+                    <td>@(p.codpropietario)</td>
+                    <td>@(p.propnombre)</td>
+                    <td>@(p.propapellido)</td>
+                    <td>@(p.propdni)</td>
+                    <td>@(p.proptelefono)</td>
+                    <td>@(p.propemail)</td>
+                    <td>
+                        <a href="@Url.Action("Index", "Propietarios", new { id = p.codpropietario })" class="btn btn-sm btn-warning">
+                            <i class="fa-solid fa-pen-to-square icon-white"></i>
+                        </a>
+                        @using (Html.BeginForm("Eliminar", "Propietarios", FormMethod.Post, new { @class = "d-inline" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("id", p.codpropietario)
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                <i class="fa-solid fa-trash icon-white"></i>
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#btnConsultarDni').click(function () {
+                var dni = $('#dni').val();
+                if (dni) {
+                    $.ajax({
+                        url: '@Url.Action("ConsultarDni", "Usuarios")',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: { dni: dni },
+                        success: function (data) {
+                            if (data.success) {
+                                $('#propietario_propnombre').val(data.nombre);
+                                $('#propietario_propapellido').val(data.apellido);
+                            } else {
+                                alert(data.message);
+                            }
+                        },
+                        error: function () {
+                            alert('Error al consultar el DNI.');
+                        }
+                    });
+                } else {
+                    alert('Ingrese un número de DNI válido.');
+                }
+            });
+        });
+    </script>
+}

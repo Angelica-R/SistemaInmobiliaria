@@ -1,57 +1,190 @@
-﻿@model List<Sistema_Inmobiliaria.Models.usuarios>
-@{
+﻿@{
     ViewBag.Title = "Index";
+    var usuarios = ViewBag.Usuarios as List<Sistema_Inmobiliaria.Models.usuarios>;
+    var usuario = ViewBag.Usuario as Sistema_Inmobiliaria.Models.usuarios;
+    var roles = ViewBag.Roles as List<Sistema_Inmobiliaria.Models.roles>;
 }
 
 <style>
     .icon-white {
         color: white !important;
     }
+
+    .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
 </style>
 
 <br />
-<center><h1>Gestionar Usuarios</h1></center>
-<h2 class="card-header"><a href="~/Usuario/AgregarEditar/" class="btn btn-secondary">Nuevo Usuario</a> <br /><br /></h2>
 
-<br />
+<div class="container">
+    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.ErrorMessage
+        </div>
+    }
 
-<table id="DatatableP" class="table">
-    <thead>
-        <tr>
-            <th style="width:30px">Id</th>
-            <th style="width:80px">DNI</th>
-            <th style="width:150px">Nombre</th>
-            <th style="width:30px">Email</th>
-            <th style="width:100px">Direccion</th>
-            <th style="width:100px">Telefono</th>
-            <th style="width:50px">Rol</th>
-            <th style="width:250px">Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var m in Model)
-        {
+    @using (Html.BeginForm("Guardar", "Usuarios", FormMethod.Post, new { enctype = "multipart/form-data", @class = "needs-validation", novalidate = "novalidate" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => usuario.codusuario)
+
+<fieldset>
+    <center><h2>Gestionar Usuarios</h2></center>
+    <br />
+
+    <div class="input-group mb-3">
+        <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+        @Html.TextBoxFor(m => usuario.dni, new { @class = "form-control", id = "dniInput", placeholder = "DNI", required = "required" })
+        @Html.ValidationMessageFor(m => usuario.dni, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+        @Html.TextBoxFor(m => usuario.nombre, new { @class = "form-control", id = "nombreInput", placeholder = "Nombres", required = "required" })
+        @*<span class="input-group-text">Apellido</span>*@
+        @Html.TextBoxFor(m => usuario.apellido, new { @class = "form-control", id = "apellidoInput", placeholder = "Apellidos", required = "required" })
+        @Html.ValidationMessageFor(m => usuario.nombre, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(m => usuario.apellido, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+        @Html.TextBoxFor(m => usuario.email, new { @class = "form-control", id = "emailInput", type = "email", placeholder = "Correo electrónico", required = "required" })
+        @Html.ValidationMessageFor(m => usuario.email, "", new { @class = "text-danger" })
+        <span class="input-group-text"><i class="fas fa-key"></i></span>
+        @Html.TextBoxFor(m => usuario.clave, new { @class = "form-control", id = "claveInput", placeholder = "Contraseña", required = "required" })
+        @Html.ValidationMessageFor(m => usuario.clave, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+        @Html.TextBoxFor(m => usuario.direccion, new { @class = "form-control", id = "direccionInput", placeholder = "Dirección" })
+        @Html.ValidationMessageFor(m => usuario.direccion, "", new { @class = "text-danger" })
+        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+        @Html.TextBoxFor(m => usuario.telefono, new { @class = "form-control", id = "telefonoInput", maxlength = 9, minlength = 9, pattern = "[0-9]{9}", title = "El teléfono debe tener exactamente 9 dígitos.", placeholder = "Teléfono" })
+        @Html.ValidationMessageFor(m => usuario.telefono, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+        @Html.DropDownListFor(m => usuario.codrol, new SelectList(roles, "codrol", "descripcion"), "Seleccione un Rol", new { @class = "form-control", id = "codrolInput" })
+        @Html.ValidationMessageFor(m => usuario.codrol, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="fotoInput"><i class="fas fa-camera"></i></label>
+
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="fotoInput" name="Foto">
+            <label class="custom-file-label" for="fotoInput">Elegir archivo...</label>
+        </div>
+        @Html.ValidationMessageFor(m => usuario.foto, "", new { @class = "text-danger" })
+    </div>
+     
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary" style="color:white;">Guardar</button>
+    </div>
+</fieldset>
+    }
+
+
+
+    <br />
+    @*<h2 class="card-header">Listado de Usuarios</h2>*@
+    <br />
+    <table id="DatatableP" class="table">
+        <thead>
             <tr>
-                <td>@(m.codusuario)</td>
-                <td>@(m.dni)</td>
-                <td>@(m.nombre + " " + m.apellido)</td>
-                <td>@(m.email)</td>
-                <td>@(m.direccion)</td>
-                <td>@(m.telefono)</td>
-                <td>@(m.roles.descripcion)</td>
-                <td>
-                    <a href="~/Usuario/Visualizar/@m.codusuario" class="btn btn-sm btn-primary">
-                        <i class="fa-solid fa-eye icon-white"></i>
-                    </a>
-                    <a href="~/Usuario/AgregarEditar/@m.codusuario" class="btn btn-sm btn-warning">
-                        <i class="fa-solid fa-pen-to-square icon-white"></i>
-                    </a>
-                    <a onclick="return confirm('¿Esta seguro de eliminar el registro?');" href="~/Usuario/Eliminar/@m.codusuario" class="btn btn-sm btn-danger">
-                        <i class="fa-solid fa-trash icon-white"></i>
-                    </a>
-                </td>
+                <th style="width:30px">Id</th>
+                <th style="width:80px">DNI</th>
+                <th style="width:200px">Nombres y Apellidos</th>
+                <th style="width:30px">Email</th>
+                <th style="width:100px">Direccion</th>
+                <th style="width:100px">Celular</th>
+                <th style="width:70px">Contraseña</th>
+                <th style="width:50px">Rol</th>
+                <th style="width:100px">Foto</th>
+                <th style="width:250px">Acciones</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var m in usuarios)
+            {
+                <tr>
+                    <td>@(m.codusuario)</td>
+                    <td>@(m.dni)</td>
+                    <td>@(m.nombre + " " + m.apellido)</td>
+                    <td>@(m.email)</td>
+                    <td>@(m.direccion)</td>
+                    <td>@(m.telefono)</td>
+                    <td>@(m.clave)</td>
+                    <td>@(m.roles.descripcion)</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(m.foto))
+                        {
+                            <img src="@Url.Content(m.foto)" alt="Foto" style="width: 50px; height: 50px;" />
+                        }
+                        else
+                        {
+                            <span>Sin imagen</span>
+                        }
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Visualizar", "Usuarios", new { id = m.codusuario })" class="btn btn-sm btn-primary ">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="~/Usuarios/Index?id=@m.codusuario" class="btn btn-sm btn-warning">
+                            <i class="fa-solid fa-pen-to-square icon-white"></i>
+                        </a>
 
+
+
+                        @using (Html.BeginForm("Eliminar", "Usuarios", FormMethod.Post, new { @class = "d-inline" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("id", m.codusuario)
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Está seguro de eliminar este usuario?');">
+                                <i class="fa-solid fa-trash icon-white"></i>
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#dniInput").change(function () {
+                var dni = $(this).val();
+                if (dni) {
+                    $.ajax({
+                        url: '@Url.Action("ConsultarDni", "Usuarios")',
+                        type: 'GET',
+                        data: { dni: dni },
+                        success: function (data) {
+                            if (data.success) {
+                                $("#nombreInput").val(data.nombre);
+                                $("#apellidoInput").val(data.apellido);
+                            } else {
+                                alert(data.message);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            alert("Error al consultar el DNI.");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

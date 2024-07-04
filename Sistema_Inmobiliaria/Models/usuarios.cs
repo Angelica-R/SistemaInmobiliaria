@@ -46,132 +46,172 @@ namespace Sistema_Inmobiliaria.Models
         public string foto { get; set; }
 
         public int codrol { get; set; }
-
+        [ForeignKey("codrol")]
         public virtual roles roles { get; set; }
 
 
 
-        //Implementacion de metodos
+        // Métodos de Operaciones CRUD
 
-        //METODO LISTAR
+        // Método para listar todos los usuarios
+        //public List<usuarios> Listar()
+        //{
+        //    using (var db = new Model_Sistema())
+        //    {
+        //        return db.usuarios.Include("roles").ToList();
+        //    }
+        //}
 
-        public List<usuarios> Listar()
-        {
-            var Query = new List<usuarios>();
-            try
-            {
-                using (var db = new Model_Sistema())
-                {
-                    Query = db.usuarios.Include("roles").ToList();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return Query;
-        }
+        //public usuarios Obtener(int id)
+        //{
+        //    using (var db = new Model_Sistema())
+        //    {
+        //        return db.usuarios.Include("roles").SingleOrDefault(x => x.codusuario == id);
+        //    }
+        //}
 
-        //METODO OBTENER
-        public usuarios Obtener(int id = 0)
-        {
-            var Query = new usuarios();
-            try
-            {
+        //public List<usuarios> Buscar(string nombre)
+        //{
+        //    using (var db = new Model_Sistema())
+        //    {
+        //        return db.usuarios.Include("roles").Where(x => x.nombre.Contains(nombre) || x.roles.descripcion.Contains(nombre)).ToList();
+        //    }
+        //}
 
-                using (var db = new Model_Sistema())
-                {
-                    Query = db.usuarios.Include("roles").
-                            Where(x => x.codusuario == id).
-                            SingleOrDefault();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return Query;
-        }
+        //public void Guardar()
+        //{
+        //    try
+        //    {
+        //        using (var db = new Model_Sistema())
+        //        {
+        //            if (this.codusuario > 0) // el objeto existe, modificar
+        //            {
+        //                db.Entry(this).State = EntityState.Modified;
+        //            }
+        //            else // nuevo objeto, agregar
+        //            {
+        //                db.usuarios.Add(this);
+        //            }
+        //            db.SaveChanges();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
 
-
-        //METODO BUSCAR
-        public List<usuarios> Buscar(string nombre) //Devuelve una coleccion de objetos
-        {
-
-            //var resultados = new List<Usuarios>();
-
-            //if (!string.IsNullOrEmpty(rol))
-            //{
-            //    resultados = resultados.Where(x => x.Roles.Nombre_Rol == rol).ToList();
-            //}
-
-            //if (!string.IsNullOrEmpty(nombre))
-            //{
-            //    resultados = resultados.Where(x => x.Nombre.Contains(nombre)).ToList();
-            //}
-
-            //return resultados;
-
-            var Query = new List<usuarios>();
-
-            try
-            {
-                using (var db = new Model_Sistema())
-
-                {
-                    Query = db.usuarios.Include("roles").
-                        Where(x => x.nombre.Contains(nombre) || x.roles.descripcion.Contains(nombre)).ToList();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-            return Query;
-        }
+        //        throw new Exception("Error al guardar el usuario: " + ex.Message);
+        //    }
+        //}
 
 
-        //METODO GUARDAR
-        public void Guardar()
-        {
-            try
-            {
-                using (var db = new Model_Sistema())
-                {
-                    if (this.codusuario > 0) //el objeto existe Modificar
-                    {
-                        db.Entry(this).State = EntityState.Modified;
-                    }
-                    else //Nuevo objeto Agregar
-                    {
-                        db.Entry(this).State = EntityState.Added;
-                    }
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //public void Eliminar()
+        //{
+        //    using (var db = new Model_Sistema())
+        //    {
+        //        db.Entry(this).State = EntityState.Deleted;
+        //        db.SaveChanges();
+        //    }
+        //}
 
-        //METODO ELIMINAR
-        public void Eliminar()
-        {
-            try
-            {
-                using (var db = new Model_Sistema())
-                {
-                    db.Entry(this).State = EntityState.Deleted;
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+
+
+        //public List<usuarios> Listar()
+        //{
+        //    List<usuarios> Query = new List<usuarios>();
+        //    try
+        //    {
+        //        using (var db = new Model_Sistema())
+        //        {
+        //            Query = db.usuarios.Include("roles").ToList();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //    return Query;
+        //}
+
+        //// Método para obtener un usuario por su ID
+        //public usuarios Obtener(int id = 0)
+        //{
+        //    usuarios Query = new usuarios();
+        //    try
+        //    {
+        //        using (var db = new Model_Sistema())
+        //        {
+        //            Query = db.usuarios.Include("roles")
+        //                    .Where(x => x.codusuario == id)
+        //                    .SingleOrDefault();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //    return Query;
+        //}
+
+        //// Método para buscar usuarios por nombre o descripción de rol
+        //public List<usuarios> Buscar(string nombre)
+        //{
+        //    List<usuarios> Query = new List<usuarios>();
+        //    try
+        //    {
+        //        using (var db = new Model_Sistema())
+        //        {
+        //            Query = db.usuarios.Include("roles")
+        //                    .Where(x => x.nombre.Contains(nombre) || x.roles.descripcion.Contains(nombre))
+        //                    .ToList();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //    return Query;
+        //}
+
+        //// Método para guardar un usuario (Insertar o Actualizar)
+        //public void Guardar()
+        //{
+        //    try
+        //    {
+        //        using (var db = new Model_Sistema())
+        //        {
+        //            if (this.codusuario > 0) // el objeto existe, modificar
+        //            {
+        //                db.Entry(this).State = EntityState.Modified;
+        //            }
+        //            else // nuevo objeto, agregar
+        //            {
+        //                db.usuarios.Add(this);
+        //            }
+        //            db.SaveChanges();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+        //// Método para eliminar un usuario
+        //public void Eliminar()
+        //{
+        //    try
+        //    {
+        //        using (var db = new Model_Sistema())
+        //        {
+        //            db.Entry(this).State = EntityState.Deleted;
+        //            db.SaveChanges();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
 
     }
 }
