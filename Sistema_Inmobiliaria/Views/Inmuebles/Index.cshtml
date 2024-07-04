@@ -1,0 +1,139 @@
+﻿@model Sistema_Inmobiliaria.Models.inmuebles
+@{
+    ViewBag.Title = "Inmuebles";
+    var inmuebles = ViewBag.Inmuebles as List<Sistema_Inmobiliaria.Models.inmuebles>;
+    var inmueble = ViewBag.Inmueble as Sistema_Inmobiliaria.Models.inmuebles;
+    var categorias = ViewBag.Categorias as List<Sistema_Inmobiliaria.Models.categoria>;
+}
+
+<style>
+    .icon-white {
+        color: white !important;
+    }
+
+    .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .card-header {
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container">
+    @using (Html.BeginForm("Guardar", "Inmuebles", FormMethod.Post, new { enctype = "multipart/form-data", @class = "needs-validation", novalidate = "novalidate" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => inmueble.idinmueble)
+
+        <fieldset>
+            <legend><h2 class="text-center">Gestionar Inmuebles</h2></legend>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-home"></i></span>
+                @Html.TextBoxFor(m => inmueble.titulo, new { @class = "form-control", placeholder = "Título del Inmueble", required = "required" })
+                @Html.ValidationMessageFor(m => inmueble.titulo, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-align-left"></i></span>
+                @Html.TextBoxFor(m => inmueble.descripcion, new { @class = "form-control", placeholder = "Descripción", required = "required" })
+                @Html.ValidationMessageFor(m => inmueble.descripcion, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                @Html.TextBoxFor(m => inmueble.precio, new { @class = "form-control", placeholder = "Precio", required = "required" })
+                @Html.ValidationMessageFor(m => inmueble.precio, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="fotoInput"><i class="fas fa-camera"></i></label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="fotoInput" name="Foto">
+                    <label class="custom-file-label" for="fotoInput">Elegir archivo...</label>
+                </div>
+                @Html.ValidationMessageFor(m => inmueble.imagen, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-list-alt"></i></span>
+                @Html.DropDownListFor(m => inmueble.idcategoria, new SelectList(categorias, "idcategoria", "descripcion"), new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(m => inmueble.idcategoria, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-route"></i></span>
+                @Html.TextBoxFor(m => inmueble.ruta, new { @class = "form-control", placeholder = "Ruta", required = "required" })
+                @Html.ValidationMessageFor(m => inmueble.ruta, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group text-center">
+                <input type="submit" value="Guardar" class="btn btn-primary" style="color:white;" />
+            </div>
+        </fieldset>
+    }
+
+    @*<h2 class="card-header">Listado de Inmuebles</h2>*@
+
+    <table id="DatatableP" class="table">
+        <thead>
+            <tr>
+                <th style="width:30px">Id</th>
+                <th style="width:150px">Título</th>
+                <th style="width:250px">Descripción</th>
+                <th style="width:100px">Precio</th>
+                <th style="width:150px">Imagen</th>
+                <th style="width:150px">Categoría</th>
+                <th style="width:150px">Ruta</th>
+                <th style="width:150px">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in inmuebles)
+            {
+                <tr>
+                    <td>@(i.idinmueble)</td>
+                    <td>@(i.titulo)</td>
+                    <td>@(i.descripcion)</td>
+                    <td>@(i.precio)</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(i.imagen))
+                        {
+                            <img src="@Url.Content(i.imagen)" alt="Foto" style="width: 50px; height: 50px;" />
+                        }
+                        else
+                        {
+                            <span>Sin imagen</span>
+                        }
+                    </td>
+                    <td>@(i.categoria.descripcion)</td>
+                    <td>@(i.ruta)</td>
+                    <td>
+                        <a href="@Url.Action("Index", "Inmuebles", new { id = i.idinmueble })" class="btn btn-sm btn-warning">
+                            <i class="fa-solid fa-pen-to-square icon-white"></i>
+                        </a>
+                        @using (Html.BeginForm("Eliminar", "Inmuebles", FormMethod.Post, new { @class = "d-inline" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("id", i.idinmueble)
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Está seguro que desea eliminar este inmueble?');">
+                                <i class="fa-solid fa-trash icon-white"></i>
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+}

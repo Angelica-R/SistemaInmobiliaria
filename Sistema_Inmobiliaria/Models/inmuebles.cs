@@ -32,7 +32,7 @@ namespace Sistema_Inmobiliaria.Models
         [StringLength(20)]
         public string precio { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(100)]
         public string imagen { get; set; }
 
