@@ -2272,6 +2272,7 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\InmueblesController.cs" />
     <Compile Include="Controllers\LocalesController.cs" />
+    <Compile Include="Controllers\PropietariosController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2506,6 +2507,7 @@
     <Content Include="Views\Categorias\Index.cshtml" />
     <Content Include="Views\Inmuebles\Index.cshtml" />
     <Content Include="Views\Locales\Index.cshtml" />
+    <Content Include="Views\Propietarios\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
