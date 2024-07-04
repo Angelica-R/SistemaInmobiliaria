@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Categorias";
+    var categorias = ViewBag.Categorias as List<Sistema_Inmobiliaria.Models.categoria>;
+    var categoria = ViewBag.Categoria as Sistema_Inmobiliaria.Models.categoria;
+}
+
+<style>
+    .icon-white {
+        color: white !important;
+    }
+
+    .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .card-header {
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container">
+    @using (Html.BeginForm("Guardar", "Categorias", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => categoria.idcategoria)
+
+        <fieldset>
+            <legend><h2 class="text-center">Gestionar Categorias</h2></legend>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                @Html.TextBoxFor(m => categoria.descripcion, new { @class = "form-control", placeholder = "Descripción de la Categoria", required = "required" })
+                @Html.ValidationMessageFor(m => categoria.descripcion, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group text-center">
+                <input type="submit" value="Guardar" class="btn btn-primary" style="color:white;" />
+            </div>
+        </fieldset>
+    }
+
+    <h2 class="card-header">Listado de Categorias</h2>
+
+    <table id="DatatableP" class="table">
+        <thead>
+            <tr>
+                <th style="width:30px">Id</th>
+                <th style="width:250px">Descripción</th>
+                <th style="width:150px">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in categorias)
+            {
+                <tr>
+                    <td>@(c.idcategoria)</td>
+                    <td>@(c.descripcion)</td>
+                    <td>
+                        <a href="@Url.Action("Index", "Categorias", new { id = c.idcategoria })" class="btn btn-sm btn-warning">
+                            <i class="fa-solid fa-pen-to-square icon-white"></i>
+                        </a>
+                        @using (Html.BeginForm("Eliminar", "Categorias", FormMethod.Post, new { @class = "d-inline" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("id", c.idcategoria)
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Está seguro de eliminar esta categoria?');">
+                                <i class="fa-solid fa-trash icon-white"></i>
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

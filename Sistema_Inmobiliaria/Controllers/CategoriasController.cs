@@ -9,51 +9,57 @@ using Sistema_Inmobiliaria.Models;
 
 namespace Sistema_Inmobiliaria.Controllers
 {
-
-    public class RolesController : Controller
+    public class CategoriasController : Controller
     {
-        private roles objRoles = new roles();
+        private categoria objCategoria = new categoria();
         private Model_Sistema db = new Model_Sistema();
 
         public async Task<ActionResult> Index(int? id)
         {
-            ViewBag.Roles = await db.roles.ToListAsync();
-            ViewBag.Rol = id == null ? new roles() : await db.roles.FindAsync(id);
+            ViewBag.Categorias = await db.categoria.ToListAsync();
+            ViewBag.Categoria = id == null ? new categoria() : await db.categoria.FindAsync(id);
             return View();
         }
 
-        // POST: Roles/Guardar
+
+        // POST: Categorias/Guardar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Guardar([Bind(Include = "codrol,descripcion")] roles rol)
+        public async Task<ActionResult> Guardar([Bind(Include = "idcategoria,descripcion")] categoria categoria)
         {
             if (ModelState.IsValid)
             {
-                if (rol.codrol == 0)
+                if (categoria.idcategoria == 0)
                 {
-                    db.roles.Add(rol);
+                    db.categoria.Add(categoria);
                 }
                 else
                 {
-                    db.Entry(rol).State = EntityState.Modified;
+                    db.Entry(categoria).State = EntityState.Modified;
                 }
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.Roles = await db.roles.ToListAsync();
-            ViewBag.Rol = rol;
+            ViewBag.Categorias = await db.categoria.ToListAsync();
+            ViewBag.Categoria = categoria;
             return View("Index");
         }
 
-        // POST: Roles/Eliminar
+        // POST: Categorias/Eliminar
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Eliminar(int id)
         {
-            roles rol = await db.roles.FindAsync(id);
-            if (rol != null)
+            var inmueblesRelacionados = db.inmuebles.Where(i => i.idcategoria == id).ToList();
+            foreach (var inmueble in inmueblesRelacionados)
             {
-                db.roles.Remove(rol);
+                db.inmuebles.Remove(inmueble);
+            }
+
+            var categoria = await db.categoria.FindAsync(id);
+            if (categoria != null)
+            {
+                db.categoria.Remove(categoria);
                 await db.SaveChangesAsync();
             }
             return RedirectToAction("Index");
@@ -67,6 +73,5 @@ namespace Sistema_Inmobiliaria.Controllers
             }
             base.Dispose(disposing);
         }
-
     }
 }

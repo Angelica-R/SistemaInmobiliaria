@@ -31,85 +31,85 @@ namespace Sistema_Inmobiliaria.Models
 
         //METODO LISTAR
 
-        public List<roles> Listar() //Devuelve una coleccion de objetos
-        {
-            var Query = new List<roles>();
-            try
-            {
-                using (var db = new Model_Sistema())
-                {
-                    Query = db.roles.ToList();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+        //public List<roles> Listar() //Devuelve una coleccion de objetos
+        //{
+        //    var Query = new List<roles>();
+        //    try
+        //    {
+        //        using (var db = new Model_Sistema())
+        //        {
+        //            Query = db.roles.ToList();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
 
-            return Query;
-        }
+        //    return Query;
+        //}
 
-        //METODO OBTENER
-        public roles Obtener(int id)
-        {
-            var Query = new roles();
-            try
-            {
+        ////METODO OBTENER
+        //public roles Obtener(int id)
+        //{
+        //    var Query = new roles();
+        //    try
+        //    {
 
-                using (var db = new Model_Sistema())
-                {
-                    Query = db.roles.
-                            Where(x => x.codrol == id).
-                            SingleOrDefault();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return Query;
-        }
+        //        using (var db = new Model_Sistema())
+        //        {
+        //            Query = db.roles.
+        //                    Where(x => x.codrol == id).
+        //                    SingleOrDefault();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //    return Query;
+        //}
 
 
-        //METODO GUARDAR
-        public void Guardar()
-        {
-            try
-            {
-                using (var db = new Model_Sistema())
-                {
-                    if (this.codrol > 0) //el objeto existe Modificar
-                    {
-                        db.Entry(this).State = EntityState.Modified;
-                    }
-                    else //Nuevo objeto Agregar
-                    {
-                        db.Entry(this).State = EntityState.Added;
-                    }
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        ////METODO GUARDAR
+        //public void Guardar()
+        //{
+        //    try
+        //    {
+        //        using (var db = new Model_Sistema())
+        //        {
+        //            if (this.codrol > 0) //el objeto existe Modificar
+        //            {
+        //                db.Entry(this).State = EntityState.Modified;
+        //            }
+        //            else //Nuevo objeto Agregar
+        //            {
+        //                db.Entry(this).State = EntityState.Added;
+        //            }
+        //            db.SaveChanges();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
 
-        //METODO ELIMINAR
-        public void Eliminar()
-        {
-            try
-            {
-                using (var db = new Model_Sistema())
-                {
-                    db.Entry(this).State = EntityState.Deleted;
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        ////METODO ELIMINAR
+        //public void Eliminar()
+        //{
+        //    try
+        //    {
+        //        using (var db = new Model_Sistema())
+        //        {
+        //            db.Entry(this).State = EntityState.Deleted;
+        //            db.SaveChanges();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
     }
 }
