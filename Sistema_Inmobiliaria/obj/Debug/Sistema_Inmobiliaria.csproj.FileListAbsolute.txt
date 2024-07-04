@@ -165,3 +165,5 @@ D:\UPT\10° CICLO\PROGRAMACION WEB II\PROYECTO\Visual Studio\Sistema_Inmobiliari
 D:\UPT\10° CICLO\PROGRAMACION WEB II\PROYECTO\Visual Studio\Sistema_Inmobiliaria\Sistema_Inmobiliaria\obj\Debug\Sistema_Inmobiliaria.csproj.CopyComplete
 D:\UPT\10° CICLO\PROGRAMACION WEB II\PROYECTO\Visual Studio\Sistema_Inmobiliaria\Sistema_Inmobiliaria\obj\Debug\Sistema_Inmobiliaria.dll
 D:\UPT\10° CICLO\PROGRAMACION WEB II\PROYECTO\Visual Studio\Sistema_Inmobiliaria\Sistema_Inmobiliaria\obj\Debug\Sistema_Inmobiliaria.pdb
+D:\UPT\10° CICLO\PROGRAMACION WEB II\PROYECTO\Visual Studio\Sistema_Inmobiliaria\Sistema_Inmobiliaria\bin\Newtonsoft.Json.dll
+D:\UPT\10° CICLO\PROGRAMACION WEB II\PROYECTO\Visual Studio\Sistema_Inmobiliaria\Sistema_Inmobiliaria\bin\Newtonsoft.Json.xml

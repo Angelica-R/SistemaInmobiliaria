@@ -54,64 +54,64 @@ namespace Sistema_Inmobiliaria.Models
         // Métodos de Operaciones CRUD
 
         // Método para listar todos los usuarios
-        public List<usuarios> Listar()
-        {
-            using (var db = new Model_Sistema())
-            {
-                return db.usuarios.Include("roles").ToList();
-            }
-        }
+        //public List<usuarios> Listar()
+        //{
+        //    using (var db = new Model_Sistema())
+        //    {
+        //        return db.usuarios.Include("roles").ToList();
+        //    }
+        //}
 
-        public usuarios Obtener(int id)
-        {
-            using (var db = new Model_Sistema())
-            {
-                return db.usuarios.Include("roles").SingleOrDefault(x => x.codusuario == id);
-            }
-        }
+        //public usuarios Obtener(int id)
+        //{
+        //    using (var db = new Model_Sistema())
+        //    {
+        //        return db.usuarios.Include("roles").SingleOrDefault(x => x.codusuario == id);
+        //    }
+        //}
 
-        public List<usuarios> Buscar(string nombre)
-        {
-            using (var db = new Model_Sistema())
-            {
-                return db.usuarios.Include("roles").Where(x => x.nombre.Contains(nombre) || x.roles.descripcion.Contains(nombre)).ToList();
-            }
-        }
+        //public List<usuarios> Buscar(string nombre)
+        //{
+        //    using (var db = new Model_Sistema())
+        //    {
+        //        return db.usuarios.Include("roles").Where(x => x.nombre.Contains(nombre) || x.roles.descripcion.Contains(nombre)).ToList();
+        //    }
+        //}
 
-        public void Guardar()
-        {
-            try
-            {
-                using (var db = new Model_Sistema())
-                {
-                    if (this.codusuario > 0) // el objeto existe, modificar
-                    {
-                        db.Entry(this).State = EntityState.Modified;
-                    }
-                    else // nuevo objeto, agregar
-                    {
-                        db.usuarios.Add(this);
-                    }
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
+        //public void Guardar()
+        //{
+        //    try
+        //    {
+        //        using (var db = new Model_Sistema())
+        //        {
+        //            if (this.codusuario > 0) // el objeto existe, modificar
+        //            {
+        //                db.Entry(this).State = EntityState.Modified;
+        //            }
+        //            else // nuevo objeto, agregar
+        //            {
+        //                db.usuarios.Add(this);
+        //            }
+        //            db.SaveChanges();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
 
-                throw new Exception("Error al guardar el usuario: " + ex.Message);
-            }
-        }
+        //        throw new Exception("Error al guardar el usuario: " + ex.Message);
+        //    }
+        //}
 
 
-        public void Eliminar()
-        {
-            using (var db = new Model_Sistema())
-            {
-                db.Entry(this).State = EntityState.Deleted;
-                db.SaveChanges();
-            }
-        }
+        //public void Eliminar()
+        //{
+        //    using (var db = new Model_Sistema())
+        //    {
+        //        db.Entry(this).State = EntityState.Deleted;
+        //        db.SaveChanges();
+        //    }
+        //}
 
 
 

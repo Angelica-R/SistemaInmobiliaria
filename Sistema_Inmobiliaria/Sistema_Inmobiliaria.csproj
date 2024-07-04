@@ -104,6 +104,7 @@
   <ItemGroup>
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Usuarios\default-user.jpg" />
     <Content Include="Source\assets\css\portal.css" />
     <Content Include="Source\assets\images\app-logo.svg" />
     <Content Include="Source\assets\images\background\background-1.jpg" />
@@ -2268,7 +2269,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
-    <Compile Include="Controllers\InmuebleController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2499,10 +2499,8 @@
     <Content Include="Source\assets\scss\portal.scss" />
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Usuarios\Visualizar.cshtml" />
-    <Content Include="Views\Usuarios\AgregarEditar.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Roles\AgregarEditar.cshtml" />
-    <Content Include="Views\Inmueble\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
