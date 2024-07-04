@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+	align-items: center;
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../img/fondo_pagina-09.png");
+	
+}
+
+.contenido{
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+	height: 100%;
+  width: 100%;
+  
+	
+ 	/*v¿padding-left: 300px;
+	padding-top: 200px;
+  border-radius: 7px;
+  	-webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+ 	-moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+  	box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);*/
+}
+
+
+.product-img {
+  float: left;
+  height: 400px;
+  width: 448px;
+}
+
+
+.product-img img {
+  border-radius: 7px 0 0 7px;
+  height: 500px;
+  width: 455px;
+}
+
+.product-info {
+  float: left;
+  height: 500px;
+  width: 400px;
+  border-radius: 0 7px 7px 0;
+  background-color:rgba(245,245,245,1.00);
+}
+
+.product-text {
+  height: 335px;
+  width: 327px;
+}
+
+.product-text h1 {
+  margin: 0 0 0 38px;
+  padding-top: 75px;
+  font-size: 45px;
+  color: #474747;
+}
+
+.product-text h1,
+.product-price-btn p {
+  font-family: 'Montserrat';
+  font-size: 35px;
+	text-transform: uppercase;
+}
+
+.product-text h2 {
+  margin: 0 0 35px 38px;
+  font-size: 16px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #d2d2d2;
+  letter-spacing: 0.2em;
+}
+
+.product-text p {
+  height: 170px;
+  margin: 0 0 0 38px;
+ font-family: 'Raleway', sans-serif;
+  color: #8d8d8d;
+  line-height: 1.7em;
+  font-size: 20px;
+  font-weight: lighter;
+  overflow: hidden;
+}
+
+.cantidad {
+  height: 50px;
+  width: 317px;
+  position: relative;
+}
+
+
+.cantidad input{
+	height: 26px;
+	width: 38px;
+	background-color:rgba(227,227,227,1.00);
+	border-radius: 2px;
+	border-style: none;
+	text-align: center;
+	font-size: 17px;
+}
+
+.total{
+  padding-top: 30px;
+  height: 500px;
+  width: 450px;
+  border-radius: 7px;
+  background-color: #ffffff;
+  margin-bottom: 35px;
+  margin-right: 300px;
+}
+
+.total-text {
+  height: 380px;
+  width: 380px;
+
+}
+
+.total-text img{
+	width: 220px;
+	height: 100px;
+	margin-left: 70px;
+	margin-bottom: 30px;
+}
+.total-text h1,
+.total-text p {
+   font-family: 'Montserrat';
+}
+
+.total-text h2{
+  margin: 0 0 0 48px;
+  font-size: 17px;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  text-transform: uppercase;
+  color: rgba(69,69,69,1.00);
+  letter-spacing: 0.07em;
+}
+
+.total-text h3 {
+  margin: 0 0 0 48px;
+  font-size: 17px;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  text-transform: uppercase;
+  color: rgba(69,69,69,1.00);
+  letter-spacing: 0.07em;
+  color: rgba(152,32,34,1.00);
+}
+
+
+.total-text p {
+  height: 60px;
+  margin: 0 0 0 48px;
+  font-family: 'Montserrat';
+  color:rgba(69,69,69,1.00);
+  line-height: 1.7em;
+  font-size: 18px;
+  font-weight: lighter;
+  overflow: hidden;
+  padding-top: 10px;
+}
+
+.total-text hr{
+	width: 285px;
+	margin-left: 45px;
+}
+.product-price-btn button {
+ 
+  display: inline-block;
+  height: 40px;
+  width: 170px;
+  margin: 0 0 0 100px;
+  box-sizing: border-box;
+  border: transparent;
+  border-radius: 60px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #ffffff;
+  background-color: orange;
+  cursor: pointer;
+  outline: none;
+}
+
+.product-price-btn button:hover {
+  background-color: rgb(195, 128, 2);
+}
+
+
+
+
+

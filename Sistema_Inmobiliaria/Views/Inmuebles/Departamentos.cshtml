@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Sistema_Inmobiliaria.Models.inmuebles>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Departamentos en Venta</title>
+    <link href="~/Content/css/catalogo.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    @Html.Partial("Encabezado")
+
+    <div class="container">
+        <h2>Departamentos en Venta</h2>
+        <div class="row">
+            @foreach (var depto in Model)
+            {
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="single-product">
+                        <div class="part-1">
+                            <a href="@Url.Action("Detalles", "Inmuebles", new { id = depto.idinmueble })">
+                                <img src="~/Content/img/@depto.imagen" class="imagen_forma" alt="...">
+                            </a>
+                        </div>
+                        <div class="part-2">
+                            <a href="@Url.Action("Detalles", "Inmuebles", new { id = depto.idinmueble })">
+                                <h4 class="info">@depto.titulo</h4>
+                            </a>
+                            <br>
+                            <h4 class="info">@depto.precio</h4>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    @Html.Partial("PiePagina")
+</body>
+</html>
+

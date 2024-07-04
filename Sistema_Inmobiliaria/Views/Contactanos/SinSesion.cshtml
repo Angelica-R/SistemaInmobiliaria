@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Contactanos</title>
+    <link href="~/Content/css/estilo_contacto.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    @Html.Partial("Encabezado")
+
+    <div class="container-contacto">
+        <div class="contact-box">
+            <div class="left">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1896.7925540243186!2d-70.2506803!3d-18.0444483!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915acf090bcb85d9%3A0xadf205588d425086!2sInmobiliaria%20thiago!5e0!3m2!1ses!2spe!4v1667414942977!5m2!1ses!2spe" width="425" height="425" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="right">
+                <h2>Contáctenos</h2>
+                <a href="@Url.Action("Login", "Cliente")" class="btn">Iniciar Sesión</a>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("PiePagina")
+</body>
+</html>
+

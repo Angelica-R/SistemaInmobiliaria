@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>THIAGO-Inversiones e Inmobiliaria</title>
+    <link href="~/Content/css/index-estilo.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="~/Content/img/logo.png" />
+    <script src="~/Content/js/slider.js"></script>
+</head>
+<body>
+
+    @Html.Partial("Encabezado") <!-- Incluir encabezado -->
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    @Html.Partial("Slider") <!-- Incluir slider -->
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="about">
+        <div class="about-text">
+            <br />
+            <p>Un lugar digital y cómodo donde los sueños se hacen realidad. Somos un portal inmobiliario que pone en el punto de mira a los usuarios, se adapta a los cambios y mira al futuro.</p>
+            <p>Somos una empresa en la que puedes confiar, especializada en compra y venta de terrenos, lotes y propiedades.</p>
+            <br />
+            <p>¡Te mostramos un sinfín de oportunidades para encontrar tu nuevo hogar!</p><br />
+        </div>
+        <div class="about-img">
+            <img class="casa1" src="~/Content/img/336144464.jpg" />
+            <img class="casa1" src="~/Content/img/310414643.jpg" />
+            <img class="casa1" src="~/Content/img/321032873.jpg" />
+        </div>
+    </div>
+
+    @Html.Action("Asesores", "Asesores") <!-- Incluir asesores -->
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    @Html.Partial("PiePagina") <!-- Incluir pie de página -->
+
+</body>
+</html>
+

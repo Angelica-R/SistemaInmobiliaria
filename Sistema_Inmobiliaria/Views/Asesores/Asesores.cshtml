@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Sistema_Inmobiliaria.Models.usuarios>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Conozca a Nuestros Asesores</title>
+    <link href="~/Content/css/asesores.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="asesores-titulo">
+        <br><h1>Conozca a nuestros asesores</h1>
+    </div>
+
+    <div class="asesores">
+        @foreach (var asesor in Model)
+        {
+            <div class="person">
+                <div class="container-asesor">
+                    <div class="container-inner">
+                        <div class="circle"></div>
+                        <img class="img img2" src="@Url.Content("~/Content/img/" + asesor.foto)" alt="" />
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+                <div class="name">@($"{asesor.nombre} {asesor.apellido}")</div>
+                <div class="title">@asesor.roles.descripcion</div>
+                <div class="title">@asesor.email</div>
+            </div>
+        }
+    </div>
+
+</body>
+</html>
+
+
