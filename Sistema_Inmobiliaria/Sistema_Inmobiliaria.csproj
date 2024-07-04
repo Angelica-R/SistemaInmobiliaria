@@ -2269,7 +2269,9 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\CitasController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\GuiasProgramadasController.cs" />
     <Compile Include="Controllers\InmueblesController.cs" />
     <Compile Include="Controllers\LocalesController.cs" />
     <Compile Include="Controllers\PropietariosController.cs" />
@@ -2508,6 +2510,8 @@
     <Content Include="Views\Inmuebles\Index.cshtml" />
     <Content Include="Views\Locales\Index.cshtml" />
     <Content Include="Views\Propietarios\Index.cshtml" />
+    <Content Include="Views\Citas\Index.cshtml" />
+    <Content Include="Views\GuiasProgramadas\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2518,6 +2522,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Inmuebles\" />
+    <Folder Include="Views\Guias\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

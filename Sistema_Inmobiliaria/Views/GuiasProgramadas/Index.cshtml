@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Sistema_Inmobiliaria.Models.guias_programadas>
+
+@{
+    ViewBag.Title = "Lista de Guías Programadas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .icon-white {
+        color: white !important;
+    }
+
+    .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .card-header {
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container">
+    <h2 class="text-center">Guías Programadas</h2>
+
+    <table id="DatatableGuias" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Inmueble</th>
+                <th>Correo</th>
+                <th>Mensaje</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var guia in Model)
+                {
+                    <tr>
+                        <td>@guia.idguia</td>
+                        <td>@guia.nombre</td>
+                        <td>@guia.telefono</td>
+                        <td>@guia.inmuebles.titulo</td>
+                        <td>@guia.correo</td>
+                        <td>@guia.mensaje</td>
+                        <td>
+                            <a href="@Url.Action("Guardar", "GuiasProgramadas", new { id = guia.idguia })" class="btn btn-sm btn-warning">
+                                <i class="fa-solid fa-pen-to-square icon-white"></i>
+                            </a>
+                            @using (Html.BeginForm("Eliminar", "GuiasProgramadas", FormMethod.Post, new { @class = "d-inline" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("id", guia.idguia)
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Está seguro de eliminar esta guía programada?');">
+                                    <i class="fa-solid fa-trash icon-white"></i>
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="7">No hay guías programadas disponibles.</td></tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#DatatableGuias').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
+}
